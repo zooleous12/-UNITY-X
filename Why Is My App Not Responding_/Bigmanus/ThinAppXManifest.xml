@@ -1,0 +1,99 @@
+	<Identity Name="Reserved" Publisher="CN=Reserved" Version="16.0.19530.20144" appv:PackageId="9AC08E99-230B-47e8-9721-4577B7F124EA" appv:VersionId="1A8308C7-90D1-4200-B16E-646F163A08E8"/>
+	<Properties>
+		<DisplayName>Microsoft Office 15</DisplayName>
+		<PublisherDisplayName>Reserved</PublisherDisplayName>
+		<Description>Reserved</Description>
+		<Logo>Reserved.jpeg</Logo>
+		<appv:AppVPackageDescription>No description entered</appv:AppVPackageDescription>
+		<appv:AppVInProcExt>true</appv:AppVInProcExt>
+	</Properties>
+	<Resources>
+		<Resource Language="en-us"/>
+	</Resources>
+	<Prerequisites>
+		<OSMinVersion>6.2</OSMinVersion>
+		<OSMaxVersionTested>6.2</OSMaxVersionTested>
+		<appv:TargetOSes SequencingStationProcessorArchitecture="x64"/>
+	</Prerequisites>
+	<Applications xmlns="http://schemas.microsoft.com/appv/2010/manifest">
+		<Application Id="shared" Origin="Application">
+			<Target>shared</Target>
+			<VisualElements>
+				<Name>shared</Name>
+			</VisualElements>
+		</Application>
+		<Application Id="Access" Origin="Application">
+			<Target>Access</Target>
+			<VisualElements>
+				<Name>Access</Name>
+			</VisualElements>
+		</Application>
+		<Application Id="Excel" Origin="Application">
+			<Target>Excel</Target>
+			<VisualElements>
+				<Name>Excel</Name>
+			</VisualElements>
+		</Application>
+		<Application Id="PowerPoint" Origin="Application">
+			<Target>PowerPoint</Target>
+			<VisualElements>
+				<Name>PowerPoint</Name>
+			</VisualElements>
+		</Application>
+		<Application Id="Publisher" Origin="Application">
+			<Target>Publisher</Target>
+			<VisualElements>
+				<Name>Publisher</Name>
+			</VisualElements>
+		</Application>
+		<Application Id="Outlook" Origin="Application">
+			<Target>Outlook</Target>
+			<VisualElements>
+				<Name>Outlook</Name>
+			</VisualElements>
+		</Application>
+		<Application Id="Word" Origin="Application">
+			<Target>Word</Target>
+			<VisualElements>
+				<Name>Word</Name>
+			</VisualElements>
+		</Application>
+		<Application Id="DCF" Origin="Application">
+			<Target>DCF</Target>
+			<VisualElements>
+				<Name>DCF</Name>
+			</VisualElements>
+		</Application>
+		<Application Id="OneNote" Origin="Application">
+			<Target>OneNote</Target>
+			<VisualElements>
+				<Name>OneNote</Name>
+			</VisualElements>
+		</Application>
+		<Application Id="Groove" Origin="Application">
+			<Target>Groove</Target>
+			<VisualElements>
+				<Name>Groove</Name>
+			</VisualElements>
+		</Application>
+		<Application Id="OSM" Origin="Application">
+			<Target>OSM</Target>
+			<VisualElements>
+				<Name>OSM</Name>
+			</VisualElements>
+		</Application>
+		<Application Id="OSMUX" Origin="Application">
+			<Target>OSMUX</Target>
+			<VisualElements>
+				<Name>OSMUX</Name>
+			</VisualElements>
+		</Application>
+		<Application Id="Lync" Origin="Application">
+			<Target>Lync</Target>
+			<VisualElements>
+				<Name>Lync</Name>
+			</VisualElements>
+		</Application>
+		<Application Id="PowerPivot" Origin="Application">
+			<Target>PowerPivot</Target>
+			<VisualElements>

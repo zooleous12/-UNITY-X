@@ -1,0 +1,9 @@
+﻿# LINUX MIGRATION RESOURCES
+# Phase 1: TAILS (Immediate Privacy)
+https://tails.net/install/download/index.en.html
+
+# Phase 2: Pop!_OS (Development)
+https://pop.system76.com/
+
+# Tools
+https://rufus.ie/ (USB Creation)

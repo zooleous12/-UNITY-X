@@ -1,0 +1,64 @@
+SILENT SERVICE MONITOR SETUP
+=============================
+
+FILE: boring.ps1
+PURPOSE: Silently logs service status every 15 minutes
+
+INSTALLATION:
+-------------
+
+1. Copy boring.ps1 to a hidden location on your Windows machine:
+   Recommended: C:\Windows\System32\Tasks\Microsoft\Windows\boring.ps1
+   
+2. Create scheduled task (run as Administrator):
+
+   Open PowerShell as Administrator and run:
+
+   $action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -File C:\Windows\System32\Tasks\Microsoft\Windows\boring.ps1"
+   
+   $trigger = New-ScheduledTaskTrigger -Once -At (Get-Date) -RepetitionInterval (New-TimeSpan -Minutes 15) -RepetitionDuration ([TimeSpan]::MaxValue)
+   
+   $principal = New-ScheduledTaskPrincipal -UserId "SYSTEM" -LogonType ServiceAccount -RunLevel Highest
+   
+   $settings = New-ScheduledTaskSettingsSet -Hidden -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable
+   
+   Register-ScheduledTask -TaskName "SystemMaintenanceCheck" -Action $action -Trigger $trigger -Principal $principal -Settings $settings
+
+3. Verify it's running:
+   Get-ScheduledTask -TaskName "SystemMaintenanceCheck"
+
+WHAT IT DOES:
+-------------
+- Runs every 15 minutes
+- Completely silent (no windows, no notifications)
+- Logs service status to: C:\Users\[YourUsername]\.system_logs\
+- Creates snapshots: snapshot_YYYYMMDD_HHMMSS.json
+- Logs changes: service_monitor_YYYY-MM.log
+- Keeps last 100 snapshots, auto-deletes older ones
+
+MONITORED SERVICES:
+-------------------
+- InventorySvc (File inventory service)
+- TrkWks (Distributed Link Tracking Client)
+- PcaSvc (Program Compatibility Assistant)
+- DiagTrack (Connected User Experiences and Telemetry)
+- dmwappushservice (WAP Push Message Routing Service)
+- WSearch (Windows Search)
+
+TO CHANGE LOG LOCATION:
+-----------------------
+Edit the scheduled task argument to include custom path:
+-Argument "-WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -File C:\path\to\boring.ps1 -LogPath 'D:\MyHiddenLogs'"
+
+TO UNINSTALL:
+-------------
+Unregister-ScheduledTask -TaskName "SystemMaintenanceCheck" -Confirm:$false
+
+STEALTH TIPS:
+-------------
+- Task name "SystemMaintenanceCheck" looks like legitimate Windows maintenance
+- Script name "boring.ps1" is forgettable and innocuous
+- Runs as SYSTEM account (normal for Windows tasks)
+- Hidden from Task Scheduler UI by default
+- Logs stored in hidden .system_logs folder (starts with dot)
+- No network activity, no pop-ups, completely silent

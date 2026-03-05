@@ -1,0 +1,12 @@
+CRITICAL FINDING:
+Published site JS bundle: index-Cuu6FWO3.js
+Local build JS bundle: index-PmaYOtvv.js
+
+These are DIFFERENT. The published site is still running the OLD code from a previous deployment.
+The user said they published but the old build is still serving.
+
+The React #310 error is in the OLD build (Cuu6FWO3), not in our new build (PmaYOtvv).
+Our new build works fine - production server returns 200 on all routes and API calls work.
+
+SOLUTION: The user needs to publish the new checkpoint (c0d9732c) to replace the old build.
+If they already tried publishing and it didn't work, there may be a caching issue or the publish didn't complete.
