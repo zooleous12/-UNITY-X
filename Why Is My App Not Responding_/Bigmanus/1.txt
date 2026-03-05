@@ -1,0 +1,99 @@
+
+Fixing Pip Syntax Errors in Python
+New chat
+My Stuff
+Image of 
+Image of 
+Image of 
+Gems
+
+Coding partner
+
+Productivity planner
+Chats
+Building a Lightweight LLM Interface
+Pinned chat
+Internet Explorer Network Service
+Edge Executable Location for Firewall
+Firewall Rule For Browser Internet Access
+Dating Profile Advice and Rewrites
+Baking a Better Dating Profile
+Administrator Account Login Issues
+Onn. 7-in-1 USB-C Adapter Details
+USB-C vs. SD Card Speed Comparison
+Identifying Programming-Related Files
+Urgent Notification Summary Request
+Freddy's Car Wash Closing Time
+Adjusting Response Speed
+Gemini App for Windows
+Fixing Pip Syntax Errors in Python
+Can we not fucking get bigger? What the fuck, bro?
+Maximize your screen. I can't see you.
+Stop listening. Hang up and go to the regular.
+Hello.
+Digital Marketing Agency Information Provided
+Windows Network Traffic Monitoring Tools
+Shared PC Account Manager Service Explained
+Face Detection File, Not Audio
+Zero in Processes and Cyber Security
+Calculating a Product of Numbers
+How to Get an EIN Number
+Rewriting Company Description Request
+AI's Next Level: AGI
+Spelling of College
+Ready To Continue Task
+Schedule Daily Work Brief
+Daily Task Planning and Scheduling
+Turn off live caption
+Manus AI Promo Codes and Credits
+Hero in a cape hurling large stacks of money at a swarm of model groupy type women show several of the lady's simultaneously being thrown different directions has large stacks of money hit him upside the head or chest. Everything should be full of action even though it's a steal shot. Lots of dirt and sweat and emotions
+Make this background extremely opaque and make it look the the dollar signs are stand over the defeated womens several times taller than
+Home Address Provided
+Maricopa Car Wash Options Found
+Nearby Coin Operated Car Washes
+Refusal to Copy Sensitive Numbers
+AI Image Editing Assistance Explained
+Visual Studio Insiders vs. Community
+Landing Page Code Enhancement
+PDF Upload and Investor Brief Assistance
+Beach Kissing Video Generation
+Hiding Book Data in Images
+3D Universal Scale Visualization
+Phone Number Action Prompt
+Adding Smoke and Fire
+GT Aggressor Year Identification
+Battery Pack Wiring Guide
+Windows Bootable Flash Drive File System
+PowerShell Basics: Objects, Syntax, and Pipes
+Another Eden Character Choice Advice
+Settings & help
+Conversation with Gemini
+
+
+
+
+PS C:\Users\zoole> python --version
+
+Python 3.14.2
+
+PS C:\Users\zoole> python
+
+Python 3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)] on win32
+
+Type "help", "copyright", "credits" or "license" for more information.
+
+>>> pip install vscode
+
+  File "<python-input-0>", line 1
+
+    pip install vscode
+
+        ^^^^^^^
+
+SyntaxError: invalid syntax
+
+>>> pip list
+
+  File "<python-input-1>", line 1
+
+    pip list

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture Me - Quick Capture</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 350px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+      color: white;
+    }
+    
+    .header {
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .logo {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 10px;
+      background: white;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    
+    h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .subtitle {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+    
+    .content {
+      padding: 20px;
+    }
+    
+    .capture-box {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      resize: vertical;
+      background: white;
+      color: #333;
+    }
+    
+    textarea::placeholder {
+      color: #999;
+    }
+    
+    .button-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    
+    button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary {
+      background: white;
+      color: #7c3aed;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    .quick-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    
+    .quick-action {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      color: white;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .quick-action:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+    
+    .status {
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      margin-top: 12px;
+      display: none;
+    }
+    
+    .status.success {
+      background: rgba(34, 197, 94, 0.2);
+      display: block;
+    }
+    
+    .status.error {
+      background: rgba(239, 68, 68, 0.2);
+      display: block;
+    }
+    
+    .footer {
+      padding: 12px 20px;
+      text-align: center;
+      font-size: 11px;
+      opacity: 0.8;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">🤖</div>
+    <h1>Lecture Me</h1>
+    <p class="subtitle">Quick Capture</p>
+  </div>
+  
+  <div class="content">
+    <div class="quick-actions">
+      <button class="quick-action" id="captureSelection">📝 Capture Selection</button>
+      <button class="quick-action" id="captureTab">📄 Capture Tab</button>
+      <button class="quick-action" id="openDashboard">📊 Dashboard</button>
+      <button class="quick-action" id="openUpload">⬆️ Upload</button>
+    </div>
+    
+    <div class="capture-box">
+      <textarea id="noteText" placeholder="Type your notes here or use quick capture buttons above..."></textarea>
+      <div class="button-group">
+        <button class="btn-primary" id="saveNote">Save to Lecture Me</button>
+        <button class="btn-secondary" id="clearNote">Clear</button>
+      </div>
+    </div>
+    
+    <div class="status" id="status"></div>
+  </div>
+  
+  <div class="footer">
+    <a href="https://lectureme.app" target="_blank">lectureme.app</a>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

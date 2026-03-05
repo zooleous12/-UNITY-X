@@ -1,0 +1,43 @@
+
+import string
+import sys
+from pathlib import Path
+
+def extract_strings(file_path, min_len=4):
+    with open(file_path, "rb") as f:
+        data = f.read()
+    
+    result = ""
+    current_string = ""
+    
+    for byte in data:
+        try:
+            char = chr(byte)
+            if char in string.printable and char not in ['\r', '\x0b', '\x0c']:
+                current_string += char
+            else:
+                if len(current_string) >= min_len:
+                    result += current_string + "\n"
+                current_string = ""
+        except:
+            if len(current_string) >= min_len:
+                result += current_string + "\n"
+            current_string = ""
+            
+    if len(current_string) >= min_len:
+        result += current_string + "\n"
+        
+    return result
+
+files = [
+    r"c:\core\clearview\evidence\code_tracker\4ca23083cc42228063b13481d9d6e8b9_INJECTION_COMPARISON_GUIDE.md",
+    r"c:\core\clearview\evidence\code_tracker\8c063293f6c47490109ff01017ed27a3_final_comprehensive_report.md"
+]
+
+for file in files:
+    print(f"--- START {file} ---")
+    try:
+        print(extract_strings(file))
+    except Exception as e:
+        print(f"Error reading {file}: {e}")
+    print(f"--- END {file} ---")

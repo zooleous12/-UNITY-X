@@ -1,0 +1,1199 @@
+��"""
+Lecture Me - AI-Powered Study Guide Generator
+Complete application for converting lectures and textbooks into study materials
+Enhanced with revolutionary document scanning and proactive learning features
+"""
+
+import streamlit as st
+import os
+import tempfile
+import zipfile
+from pathlib import Path
+import json
+from datetime import datetime
+import cv2
+import numpy as np
+
+# Import our modules
+from modules.audio_processor import AudioProcessor
+from modules.pdf_processor import PDFProcessor
+from modules.study_guide_generator import StudyGuideGenerator
+from modules.flashcard_generator import FlashcardGenerator
+from modules.textbook_processor import TextbookProcessor
+from modules.document_scanner import DocumentScanner
+from modules.voice_guide import VoiceGuide
+from modules.photo_processor import PhotoProcessor
+from modules.video_scanner import VideoScanner
+from modules.weakness_analyzer import WeaknessAnalyzer
+
+# Page config
+st.set_page_config(
+    page_title="Lecture Me - AI Study Guide Generator",
+    page_icon="🎓",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Custom CSS
+st.markdown("""
+<style>
+    .main-header {
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        border-radius: 10px;
+        color: white;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .feature-card {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 10px;
+        border-left: 4px solid #667eea;
+        margin: 1rem 0;
+    }
+    .success-box {
+        background: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+        padding: 1rem;
+        border-radius: 5px;
+        margin: 1rem 0;
+    }
+    .pricing-card {
+        background: white;
+        border: 2px solid #e9ecef;
+        border-radius: 10px;
+        padding: 2rem;
+        text-align: center;
+        margin: 1rem;
+        transition: transform 0.3s;
+    }
+    .pricing-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .popular {
+        border-color: #667eea;
+        position: relative;
+    }
+    .popular::before {
+        content: "MOST POPULAR";
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #667eea;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 15px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+def main():
+    # Header
+    st.markdown("""
+    <div class="main-header">
+        <h1>🎓 Lecture Me</h1>
+        <h3>Transform Your Lectures & Textbooks into Perfect Study Guides</h3>
+        <p>Upload audio lectures or PDF textbooks and get comprehensive study materials with flashcards, summaries, and practice questions</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Sidebar
+    with st.sidebar:
+        st.image("https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400", caption="Study Smart, Not Hard")
+        
+        st.markdown("### 🚀 Features")
+        st.markdown("""
+        - 🎤 **Audio Lecture Processing** - Convert recordings to study guides
+        - 📚 **Textbook Chapter Processing** - Extract key concepts from PDFs
+        - 🃏 **Smart Flashcards** - AI-generated with spaced repetition
+        - 📝 **Comprehensive Notes** - Structured summaries and outlines
+        - ❓ **Practice Questions** - Test your understanding
+        - 📊 **Progress Tracking** - Monitor your study sessions
+        """)
+        
+        st.markdown("### 💡 How It Works")
+        st.markdown("""
+        1. **Upload** your lecture audio or textbook PDF
+        2. **AI Processing** extracts key concepts and information
+        3. **Generate** study guides, flashcards, and practice questions
+        4. **Download** your complete study package
+        """)
+
+    # Main content tabs
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+        "🎤 Process Lecture", 
+        "📚 Process Textbook", 
+        "📱 Smart Scanner", 
+        "🎯 Weakness Analysis", 
+        "🃏 Flashcards", 
+        "📊 Analytics", 
+        "💰 Pricing"
+    ])
+
+    with tab1:
+        st.header("🎤 Lecture Audio Processing")
+        
+        col1, col2 = st.columns([2, 1])
+        
+        with col1:
+            st.markdown("""
+            <div class="feature-card">
+                <h4>Upload Your Lecture Recording</h4>
+                <p>Supports MP3, WAV, M4A, and other common audio formats. Maximum file size: 500MB</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            uploaded_audio = st.file_uploader(
+                "Choose audio file",
+                type=['mp3', 'wav', 'm4a', 'aac', 'ogg'],
+                help="Upload your lecture recording for AI processing"
+            )
+            
+            if uploaded_audio:
+                st.audio(uploaded_audio)
+                
+                col_a, col_b = st.columns(2)
+                with col_a:
+                    course_name = st.text_input("Course Name", placeholder="e.g., Biology 101")
+                with col_b:
+                    lecture_topic = st.text_input("Lecture Topic", placeholder="e.g., Cell Division")
+                
+                additional_context = st.text_area(
+                    "Additional Context (Optional)",
+                    placeholder="Any specific topics, textbook chapters, or focus areas for this lecture..."
+                )
+                
+                if st.button("🚀 Process Lecture", type="primary"):
+                    process_lecture_audio(uploaded_audio, course_name, lecture_topic, additional_context)
+        
+        with col2:
+            st.markdown("""
+            <div class="feature-card">
+                <h4>📋 What You'll Get</h4>
+                <ul>
+                    <li>📝 Complete transcript</li>
+                    <li>📊 Key concepts summary</li>
+                    <li>🃏 Flashcards (20-50 cards)</li>
+                    <li>❓ Practice questions</li>
+                    <li>📚 Study guide PDF</li>
+                    <li>🎯 Important timestamps</li>
+                </ul>
+            </div>
+            """, unsafe_allow_html=True)
+
+    with tab2:
+        st.header("📚 Textbook Chapter Processing")
+        
+        col1, col2 = st.columns([2, 1])
+        
+        with col1:
+            st.markdown("""
+            <div class="feature-card">
+                <h4>Upload Your Textbook Chapter or PDF</h4>
+                <p>Upload individual chapters or entire textbooks. We'll extract key concepts and create comprehensive study materials.</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            uploaded_pdf = st.file_uploader(
+                "Choose PDF file",
+                type=['pdf'],
+                help="Upload your textbook chapter or academic PDF"
+            )
+            
+            if uploaded_pdf:
+                col_a, col_b = st.columns(2)
+                with col_a:
+                    textbook_course = st.text_input("Course/Subject", placeholder="e.g., Organic Chemistry")
+                with col_b:
+                    chapter_name = st.text_input("Chapter/Section", placeholder="e.g., Chapter 5: Reactions")
+                
+                processing_focus = st.selectbox(
+                    "Processing Focus",
+                    ["Comprehensive Overview", "Key Concepts Only", "Definitions & Terms", "Practice Problems", "Exam Preparation"]
+                )
+                
+                if st.button("📚 Process Textbook", type="primary"):
+                    process_textbook_pdf(uploaded_pdf, textbook_course, chapter_name, processing_focus)
+        
+        with col2:
+            st.markdown("""
+            <div class="feature-card">
+                <h4>📋 Textbook Processing Features</h4>
+                <ul>
+                    <li>🔍 Key concept extraction</li>
+                    <li>📖 Chapter summaries</li>
+                    <li>🃏 Definition flashcards</li>
+                    <li>🧮 Formula cards</li>
+                    <li>❓ Chapter review questions</li>
+                    <li>📊 Concept relationships</li>
+                </ul>
+            </div>
+            """, unsafe_allow_html=True)
+
+    with tab5:
+        st.header("🃏 Smart Flashcards & Study Tools")
+        
+        if 'flashcards' not in st.session_state:
+            st.session_state.flashcards = []
+        
+        col1, col2 = st.columns([1, 1])
+        
+        with col1:
+            st.markdown("""
+            <div class="feature-card">
+                <h4>📚 Your Flashcard Decks</h4>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            if st.session_state.flashcards:
+                for i, deck in enumerate(st.session_state.flashcards):
+                    with st.expander(f"📚 {deck['name']} ({len(deck['cards'])} cards)"):
+                        st.write(f"**Subject:** {deck['subject']}")
+                        st.write(f"**Created:** {deck['created']}")
+                        
+                        if st.button(f"Study Deck {i+1}", key=f"study_{i}"):
+                            study_flashcards(deck)
+            else:
+                st.info("No flashcard decks yet. Process a lecture or textbook to create flashcards!")
+        
+        with col2:
+            st.markdown("""
+            <div class="feature-card">
+                <h4>🎯 Study Session</h4>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            if st.session_state.flashcards:
+                selected_deck = st.selectbox("Choose deck to study", [deck['name'] for deck in st.session_state.flashcards])
+                
+                if st.button("Start Study Session"):
+                    st.session_state.studying = True
+                    st.session_state.current_card = 0
+                
+                if st.session_state.get('studying', False):
+                    display_flashcard_session()
+
+    with tab6:
+        st.header("📊 Study Analytics & Progress")
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            st.metric("Total Study Sessions", "12", "↗️ +3")
+        with col2:
+            st.metric("Flashcards Mastered", "156", "↗️ +23")
+        with col3:
+            st.metric("Study Streak", "7 days", "🔥")
+        
+        st.markdown("""
+        <div class="feature-card">
+            <h4>📈 Coming Soon: Advanced Analytics</h4>
+            <ul>
+                <li>📊 Study time tracking</li>
+                <li>🎯 Mastery progress by topic</li>
+                <li>📅 Spaced repetition scheduling</li>
+                <li>🏆 Achievement system</li>
+                <li>📈 Performance trends</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with tab3:
+        st.header("📱 Smart Document Scanner")
+        st.markdown("""
+        <div class="feature-card">
+            <h4>🚀 Revolutionary Document Scanning</h4>
+            <p>Scan textbooks using your phone camera, photos, or video with AI-powered guidance!</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Voice guide selection
+        col1, col2 = st.columns(2)
+        with col1:
+            voice_gender = st.selectbox("🎤 Voice Guide", ["Female", "Male"], help="Choose your preferred voice for scanning guidance")
+        with col2:
+            scanning_mode = st.selectbox("📷 Scanning Mode", [
+                "Guided Camera Scan", 
+                "Phone Photo Upload", 
+                "Video Page Scan"
+            ])
+        
+        if scanning_mode == "Guided Camera Scan":
+            st.markdown("""
+            <div class="feature-card">
+                <h4>📸 Live Camera Scanning</h4>
+                <p>I'll guide you through scanning your textbook step by step with voice instructions!</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            if st.button("🎯 Start Guided Scan", type="primary"):
+                start_guided_scanning(voice_gender.lower())
+                
+        elif scanning_mode == "Phone Photo Upload":
+            st.markdown("""
+            <div class="feature-card">
+                <h4>📱 Phone Photo Processing</h4>
+                <p>Upload multiple photos of textbook pages. I'll automatically detect, order, and process them!</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            uploaded_photos = st.file_uploader(
+                "Upload textbook photos",
+                type=['jpg', 'jpeg', 'png'],
+                accept_multiple_files=True,
+                help="Upload photos of textbook pages - I'll automatically process and order them"
+            )
+            
+            if uploaded_photos:
+                col_a, col_b = st.columns(2)
+                with col_a:
+                    photo_course = st.text_input("Course Name", placeholder="e.g., Physics 101")
+                with col_b:
+                    photo_chapter = st.text_input("Chapter/Topic", placeholder="e.g., Thermodynamics")
+                
+                auto_order = st.checkbox("Auto-order pages", value=True, help="Automatically detect and order pages")
+                enhance_quality = st.checkbox("Enhance image quality", value=True, help="Improve image quality for better text recognition")
+                
+                if st.button("📱 Process Photos", type="primary"):
+                    process_phone_photos(uploaded_photos, photo_course, photo_chapter, auto_order, enhance_quality)
+                    
+        elif scanning_mode == "Video Page Scan":
+            st.markdown("""
+            <div class="feature-card">
+                <h4>🎥 Video Page Scanning</h4>
+                <p>Record a video flipping through textbook pages (~5 seconds per page). I'll extract each page automatically!</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            uploaded_video = st.file_uploader(
+                "Upload textbook video",
+                type=['mp4', 'avi', 'mov', 'mkv'],
+                help="Record video flipping through textbook pages at ~5 seconds per page"
+            )
+            
+            if uploaded_video:
+                col_a, col_b, col_c = st.columns(3)
+                with col_a:
+                    video_course = st.text_input("Course", placeholder="e.g., Chemistry")
+                with col_b:
+                    video_chapter = st.text_input("Chapter", placeholder="e.g., Chapter 3")
+                with col_c:
+                    seconds_per_page = st.slider("Seconds per page", 3.0, 10.0, 5.0, 0.5)
+                
+                auto_detect = st.checkbox("Auto-detect page changes", value=True, help="Automatically detect when pages change")
+                quality_threshold = st.slider("Quality threshold", 0.3, 0.9, 0.6, 0.1, help="Minimum quality for page extraction")
+                
+                if st.button("🎥 Process Video", type="primary"):
+                    process_video_scan(uploaded_video, video_course, video_chapter, seconds_per_page, auto_detect, quality_threshold)
+
+    with tab4:
+        st.header("🎯 Proactive Weakness Analysis")
+        st.markdown("""
+        <div class="feature-card">
+            <h4>🧠 Revolutionary Learning Intelligence</h4>
+            <p>Scan your tests and homework to identify weak points and predict future mistakes BEFORE they happen!</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        col1, col2 = st.columns([2, 1])
+        
+        with col1:
+            st.subheader("📝 Upload Tests & Homework")
+            
+            assignment_type = st.selectbox("Assignment Type", [
+                "Test/Exam", 
+                "Homework", 
+                "Quiz", 
+                "Practice Problems",
+                "Lab Report"
+            ])
+            
+            uploaded_assignments = st.file_uploader(
+                "Upload scanned assignments",
+                type=['jpg', 'jpeg', 'png', 'pdf'],
+                accept_multiple_files=True,
+                help="Upload photos or scans of your graded assignments"
+            )
+            
+            if uploaded_assignments:
+                col_a, col_b = st.columns(2)
+                with col_a:
+                    analysis_course = st.text_input("Course", placeholder="e.g., Calculus I")
+                with col_b:
+                    analysis_topic = st.text_input("Topic/Chapter", placeholder="e.g., Derivatives")
+                
+                if st.button("🎯 Analyze Weaknesses", type="primary"):
+                    analyze_weaknesses(uploaded_assignments, assignment_type.lower().replace("/", "_"), analysis_course, analysis_topic)
+        
+        with col2:
+            st.markdown("""
+            <div class="feature-card">
+                <h4>🔮 What You'll Get</h4>
+                <ul>
+                    <li>🎯 Mistake pattern identification</li>
+                    <li>📊 Weakness severity analysis</li>
+                    <li>🔮 Future mistake predictions</li>
+                    <li>💡 Proactive study recommendations</li>
+                    <li>📈 Progress tracking over time</li>
+                    <li>🎓 Personalized learning plan</li>
+                </ul>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Display student progress if available
+            if 'weakness_analyzer' in st.session_state:
+                st.subheader("📊 Your Progress")
+                analyzer = st.session_state.weakness_analyzer
+                progress = analyzer.get_student_progress_report()
+                
+                if progress and not progress.get("error"):
+                    st.metric("Assignments Analyzed", progress.get("total_assignments", 0))
+                    st.metric("Patterns Identified", len(progress.get("current_weakness_areas", [])))
+                    
+                    if progress.get("current_weakness_areas"):
+                        st.write("**Top Weakness Areas:**")
+                        for area in progress["current_weakness_areas"][:3]:
+                            st.write(f"• {area}")
+
+    with tab7:
+        st.header("💰 Pricing Plans")
+        
+        # Special launch offer
+        st.markdown("""
+        <div style="background: linear-gradient(90deg, #ff6b6b 0%, #ee5a24 100%); color: white; padding: 1.5rem; border-radius: 10px; text-align: center; margin-bottom: 2rem;">
+            <h2>🚀 LAUNCH SPECIAL</h2>
+            <h3>First Month Only $1!</h3>
+            <p>Get full access to all features for just $1 your first month. No trial surfers - real students only!</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        col1, col2, col3 = st.columns(3)
+        
+        with col1:
+            st.markdown("""
+            <div class="pricing-card">
+                <h3>🎓 Student</h3>
+                <h2>$9<small>/month</small></h2>
+                <ul style="text-align: left;">
+                    <li>✅ Audio lecture processing</li>
+                    <li>✅ PDF textbook processing</li>
+                    <li>✅ Basic study guides</li>
+                    <li>✅ Flashcard generation</li>
+                    <li>✅ 10 hours/month processing</li>
+                    <li>✅ Email support</li>
+                </ul>
+                <button style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 5px; width: 100%;">Choose Student</button>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col2:
+            st.markdown("""
+            <div class="pricing-card popular">
+                <h3>🎖️ Scholar</h3>
+                <h2>$19<small>/month</small></h2>
+                <ul style="text-align: left;">
+                    <li>✅ Everything in Student</li>
+                    <li>✅ Professor style recognition</li>
+                    <li>✅ Textbook-lecture synthesis</li>
+                    <li>✅ Multi-language support</li>
+                    <li>✅ 25 hours/month processing</li>
+                    <li>✅ Priority support</li>
+                    <li>✅ Advanced analytics</li>
+                </ul>
+                <button style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 5px; width: 100%;">Choose Scholar</button>
+            </div>
+            """, unsafe_allow_html=True)
+        
+        with col3:
+            st.markdown("""
+            <div class="pricing-card">
+                <h3>🏛️ Academic</h3>
+                <h2>$39<small>/month</small></h2>
+                <ul style="text-align: left;">
+                    <li>✅ Everything in Scholar</li>
+                    <li>✅ Syllabus integration</li>
+                    <li>✅ Exam question prediction</li>
+                    <li>✅ Parent/tutor dashboard</li>
+                    <li>✅ Unlimited processing</li>
+                    <li>✅ Phone support</li>
+                    <li>✅ Custom integrations</li>
+                </ul>
+                <button style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 5px; width: 100%;">Choose Academic</button>
+            </div>
+            """, unsafe_allow_html=True)
+
+def process_lecture_audio(audio_file, course_name, lecture_topic, additional_context):
+    """Process uploaded audio lecture"""
+    with st.spinner("🎤 Processing your lecture audio..."):
+        try:
+            # Save uploaded file temporarily
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
+                tmp_file.write(audio_file.read())
+                tmp_path = tmp_file.name
+            
+            # Initialize processors
+            audio_processor = AudioProcessor()
+            study_guide_gen = StudyGuideGenerator()
+            flashcard_gen = FlashcardGenerator()
+            
+            # Process audio
+            st.info("🔄 Transcribing audio...")
+            transcript = audio_processor.transcribe_audio(tmp_path)
+            
+            st.info("🧠 Analyzing content and extracting key concepts...")
+            analysis = audio_processor.analyze_content(transcript, course_name, lecture_topic)
+            
+            st.info("📝 Generating study guide...")
+            study_guide = study_guide_gen.create_study_guide(
+                transcript, analysis, course_name, lecture_topic, additional_context
+            )
+            
+            st.info("🃏 Creating flashcards...")
+            flashcards = flashcard_gen.generate_flashcards(analysis, course_name, lecture_topic)
+            
+            # Store flashcards in session state
+            if 'flashcards' not in st.session_state:
+                st.session_state.flashcards = []
+            
+            st.session_state.flashcards.append({
+                'name': f"{course_name} - {lecture_topic}",
+                'subject': course_name,
+                'cards': flashcards,
+                'created': datetime.now().strftime("%Y-%m-%d %H:%M")
+            })
+            
+            # Create download package
+            st.info("📦 Creating download package...")
+            download_path = create_download_package(study_guide, flashcards, transcript, course_name, lecture_topic)
+            
+            # Success message
+            st.markdown("""
+            <div class="success-box">
+                <h4>✅ Processing Complete!</h4>
+                <p>Your lecture has been successfully processed. Download your complete study package below.</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Display results
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.subheader("📊 Processing Results")
+                st.write(f"**Transcript Length:** {len(transcript.split())} words")
+                st.write(f"**Key Concepts:** {len(analysis.get('key_concepts', []))} identified")
+                st.write(f"**Flashcards Generated:** {len(flashcards)}")
+                st.write(f"**Study Guide Pages:** {len(study_guide.split('\\n\\n'))}")
+            
+            with col2:
+                st.subheader("🎯 Key Topics Identified")
+                for concept in analysis.get('key_concepts', [])[:5]:
+                    st.write(f"• {concept}")
+            
+            # Download button
+            with open(download_path, 'rb') as f:
+                st.download_button(
+                    label="📥 Download Complete Study Package",
+                    data=f.read(),
+                    file_name=f"{course_name}_{lecture_topic}_study_package.zip",
+                    mime="application/zip",
+                    type="primary"
+                )
+            
+            # Cleanup
+            os.unlink(tmp_path)
+            os.unlink(download_path)
+            
+        except Exception as e:
+            st.error(f"❌ Error processing audio: {str(e)}")
+
+def process_textbook_pdf(pdf_file, course_name, chapter_name, processing_focus):
+    """Process uploaded textbook PDF"""
+    with st.spinner("📚 Processing your textbook..."):
+        try:
+            # Save uploaded file temporarily
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
+                tmp_file.write(pdf_file.read())
+                tmp_path = tmp_file.name
+            
+            # Initialize processors
+            textbook_processor = TextbookProcessor()
+            study_guide_gen = StudyGuideGenerator()
+            flashcard_gen = FlashcardGenerator()
+            
+            # Process PDF
+            st.info("📖 Extracting text from PDF...")
+            extracted_text = textbook_processor.extract_text_from_pdf(tmp_path)
+            
+            st.info("🔍 Analyzing textbook content...")
+            analysis = textbook_processor.analyze_textbook_content(
+                extracted_text, course_name, chapter_name, processing_focus
+            )
+            
+            st.info("📝 Generating study materials...")
+            study_guide = study_guide_gen.create_textbook_study_guide(
+                extracted_text, analysis, course_name, chapter_name, processing_focus
+            )
+            
+            st.info("🃏 Creating flashcards...")
+            flashcards = flashcard_gen.generate_textbook_flashcards(
+                analysis, course_name, chapter_name
+            )
+            
+            # Store flashcards in session state
+            if 'flashcards' not in st.session_state:
+                st.session_state.flashcards = []
+            
+            st.session_state.flashcards.append({
+                'name': f"{course_name} - {chapter_name}",
+                'subject': course_name,
+                'cards': flashcards,
+                'created': datetime.now().strftime("%Y-%m-%d %H:%M")
+            })
+            
+            # Create download package
+            st.info("📦 Creating download package...")
+            download_path = create_textbook_download_package(
+                study_guide, flashcards, analysis, course_name, chapter_name
+            )
+            
+            # Success message
+            st.markdown("""
+            <div class="success-box">
+                <h4>✅ Textbook Processing Complete!</h4>
+                <p>Your textbook chapter has been successfully processed. Download your study materials below.</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Display results
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.subheader("📊 Processing Results")
+                st.write(f"**Text Length:** {len(extracted_text.split())} words")
+                st.write(f"**Key Concepts:** {len(analysis.get('key_concepts', []))} identified")
+                st.write(f"**Definitions:** {len(analysis.get('definitions', []))}")
+                st.write(f"**Flashcards Generated:** {len(flashcards)}")
+            
+            with col2:
+                st.subheader("🎯 Main Topics")
+                for concept in analysis.get('key_concepts', [])[:5]:
+                    st.write(f"• {concept}")
+            
+            # Download button
+            with open(download_path, 'rb') as f:
+                st.download_button(
+                    label="📥 Download Textbook Study Package",
+                    data=f.read(),
+                    file_name=f"{course_name}_{chapter_name}_textbook_package.zip",
+                    mime="application/zip",
+                    type="primary"
+                )
+            
+            # Cleanup
+            os.unlink(tmp_path)
+            os.unlink(download_path)
+            
+        except Exception as e:
+            st.error(f"❌ Error processing textbook: {str(e)}")
+
+def study_flashcards(deck):
+    """Display flashcard study session"""
+    st.subheader(f"🃏 Studying: {deck['name']}")
+    
+    if 'current_card' not in st.session_state:
+        st.session_state.current_card = 0
+    if 'show_answer' not in st.session_state:
+        st.session_state.show_answer = False
+    
+    cards = deck['cards']
+    current = st.session_state.current_card
+    
+    if current < len(cards):
+        card = cards[current]
+        
+        st.progress((current + 1) / len(cards))
+        st.write(f"Card {current + 1} of {len(cards)}")
+        
+        # Display question
+        st.markdown(f"""
+        <div style="background: #f8f9fa; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+            <h3>❓ Question</h3>
+            <p style="font-size: 1.2em;">{card['question']}</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Show answer button
+        if not st.session_state.show_answer:
+            if st.button("👁️ Show Answer", type="primary"):
+                st.session_state.show_answer = True
+                st.rerun()
+        else:
+            # Display answer
+            st.markdown(f"""
+            <div style="background: #d4edda; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                <h3>✅ Answer</h3>
+                <p style="font-size: 1.2em;">{card['answer']}</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Difficulty buttons
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                if st.button("😰 Hard", type="secondary"):
+                    next_card()
+            with col2:
+                if st.button("🤔 Medium", type="secondary"):
+                    next_card()
+            with col3:
+                if st.button("😊 Easy", type="primary"):
+                    next_card()
+    else:
+        st.success("🎉 Congratulations! You've completed this deck!")
+        if st.button("🔄 Study Again"):
+            st.session_state.current_card = 0
+            st.session_state.show_answer = False
+            st.rerun()
+
+def next_card():
+    """Move to next flashcard"""
+    st.session_state.current_card += 1
+    st.session_state.show_answer = False
+    st.rerun()
+
+def display_flashcard_session():
+    """Display active flashcard session"""
+    if st.session_state.flashcards:
+        deck = st.session_state.flashcards[0]  # Use first deck for demo
+        study_flashcards(deck)
+
+def create_download_package(study_guide, flashcards, transcript, course_name, lecture_topic):
+    """Create downloadable ZIP package with all study materials"""
+    # Create temporary directory
+    temp_dir = tempfile.mkdtemp()
+    
+    # Save study guide
+    study_guide_path = os.path.join(temp_dir, f"{course_name}_{lecture_topic}_study_guide.txt")
+    with open(study_guide_path, 'w', encoding='utf-8') as f:
+        f.write(study_guide)
+    
+    # Save flashcards
+    flashcards_path = os.path.join(temp_dir, f"{course_name}_{lecture_topic}_flashcards.json")
+    with open(flashcards_path, 'w', encoding='utf-8') as f:
+        json.dump(flashcards, f, indent=2, ensure_ascii=False)
+    
+    # Save transcript
+    transcript_path = os.path.join(temp_dir, f"{course_name}_{lecture_topic}_transcript.txt")
+    with open(transcript_path, 'w', encoding='utf-8') as f:
+        f.write(transcript)
+    
+    # Create ZIP file
+    zip_path = os.path.join(tempfile.gettempdir(), f"{course_name}_{lecture_topic}_package.zip")
+    with zipfile.ZipFile(zip_path, 'w') as zipf:
+        for file_path in [study_guide_path, flashcards_path, transcript_path]:
+            zipf.write(file_path, os.path.basename(file_path))
+    
+    return zip_path
+
+def create_textbook_download_package(study_guide, flashcards, analysis, course_name, chapter_name):
+    """Create downloadable ZIP package for textbook materials"""
+    # Create temporary directory
+    temp_dir = tempfile.mkdtemp()
+    
+    # Save study guide
+    study_guide_path = os.path.join(temp_dir, f"{course_name}_{chapter_name}_study_guide.txt")
+    with open(study_guide_path, 'w', encoding='utf-8') as f:
+        f.write(study_guide)
+    
+    # Save flashcards
+    flashcards_path = os.path.join(temp_dir, f"{course_name}_{chapter_name}_flashcards.json")
+    with open(flashcards_path, 'w', encoding='utf-8') as f:
+        json.dump(flashcards, f, indent=2, ensure_ascii=False)
+    
+    # Save analysis
+    analysis_path = os.path.join(temp_dir, f"{course_name}_{chapter_name}_analysis.json")
+    with open(analysis_path, 'w', encoding='utf-8') as f:
+        json.dump(analysis, f, indent=2, ensure_ascii=False)
+    
+    # Create ZIP file
+    zip_path = os.path.join(tempfile.gettempdir(), f"{course_name}_{chapter_name}_package.zip")
+    with zipfile.ZipFile(zip_path, 'w') as zipf:
+        for file_path in [study_guide_path, flashcards_path, analysis_path]:
+            zipf.write(file_path, os.path.basename(file_path))
+    
+    return zip_path
+
+def start_guided_scanning(voice_gender):
+    """Start guided document scanning with voice instructions"""
+    try:
+        # Initialize components
+        if 'document_scanner' not in st.session_state:
+            st.session_state.document_scanner = DocumentScanner()
+        if 'voice_guide' not in st.session_state:
+            st.session_state.voice_guide = VoiceGuide()
+        
+        scanner = st.session_state.document_scanner
+        voice_guide = st.session_state.voice_guide
+        
+        # Set voice gender
+        voice_guide.set_voice_gender(voice_gender)
+        
+        # Start scanning session
+        session_result = scanner.guided_textbook_scan(voice_gender)
+        
+        if session_result.get("status") == "ready":
+            st.success("🎤 Voice guide ready! Follow the instructions to scan your textbook.")
+            
+            # Display scanning steps
+            steps = session_result.get("steps", [])
+            for i, step in enumerate(steps):
+                with st.expander(f"Step {i+1}: {step['step'].replace('_', ' ').title()}", expanded=(i==0)):
+                    st.write(step["instruction"])
+                    
+                    if st.button(f"🎤 Play Instructions", key=f"voice_{i}"):
+                        voice_guide.guide_scanning_step(step["step"])
+                    
+                    if step["step"] == "front_cover":
+                        st.info("📸 Camera scanning will be available in the full version!")
+        else:
+            st.error("Failed to initialize guided scanning")
+            
+    except Exception as e:
+        st.error(f"Error starting guided scan: {e}")
+
+def process_phone_photos(uploaded_photos, course_name, chapter_name, auto_order, enhance_quality):
+    """Process uploaded phone photos"""
+    with st.spinner("📱 Processing your phone photos..."):
+        try:
+            # Initialize photo processor
+            if 'photo_processor' not in st.session_state:
+                st.session_state.photo_processor = PhotoProcessor()
+            
+            processor = st.session_state.photo_processor
+            
+            # Process photos
+            st.info(f"📸 Processing {len(uploaded_photos)} photos...")
+            batch_results = processor.process_photo_batch(
+                uploaded_photos, auto_order, enhance_quality
+            )
+            
+            if batch_results.get("processed_photos"):
+                st.success(f"✅ Successfully processed {len(batch_results['processed_photos'])} photos!")
+                
+                # Display results
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    st.subheader("📊 Processing Results")
+                    st.write(f"**Photos Processed:** {len(batch_results['processed_photos'])}")
+                    st.write(f"**Failed Photos:** {len(batch_results.get('failed_photos', []))}")
+                    st.write(f"**Auto-Ordered:** {'Yes' if auto_order else 'No'}")
+                    st.write(f"**Processing Time:** {batch_results.get('processing_time', 0):.1f}s")
+                
+                with col2:
+                    st.subheader("📄 Extracted Pages")
+                    total_text = sum(len(photo.get("extracted_text", "")) for photo in batch_results["processed_photos"])
+                    st.write(f"**Total Text Extracted:** {total_text} characters")
+                    
+                    # Show page types
+                    page_types = [photo.get("page_analysis", {}).get("estimated_page_type", "unknown") 
+                                for photo in batch_results["processed_photos"]]
+                    unique_types = list(set(page_types))
+                    st.write(f"**Page Types Found:** {', '.join(unique_types)}")
+                
+                # Create study materials
+                if st.button("📚 Generate Study Materials", type="primary"):
+                    generate_study_materials_from_photos(batch_results, course_name, chapter_name)
+            else:
+                st.error("No photos were successfully processed")
+                
+        except Exception as e:
+            st.error(f"Error processing photos: {e}")
+
+def process_video_scan(uploaded_video, course_name, chapter_name, seconds_per_page, auto_detect, quality_threshold):
+    """Process uploaded video for page scanning"""
+    with st.spinner("🎥 Processing your video..."):
+        try:
+            # Initialize video scanner
+            if 'video_scanner' not in st.session_state:
+                st.session_state.video_scanner = VideoScanner()
+            
+            scanner = st.session_state.video_scanner
+            
+            # Process video
+            st.info("🎬 Analyzing video and extracting pages...")
+            scan_results = scanner.scan_video_pages(
+                uploaded_video, seconds_per_page, quality_threshold, auto_detect
+            )
+            
+            if scan_results.get("success"):
+                pages_extracted = scan_results.get("pages_extracted", 0)
+                st.success(f"✅ Successfully extracted {pages_extracted} pages from video!")
+                
+                # Display results
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    st.subheader("🎥 Video Analysis")
+                    video_info = scan_results.get("video_info", {})
+                    st.write(f"**Duration:** {video_info.get('duration_seconds', 0):.1f} seconds")
+                    st.write(f"**FPS:** {video_info.get('fps', 0):.1f}")
+                    st.write(f"**Resolution:** {video_info.get('resolution', 'Unknown')}")
+                    st.write(f"**Pages Extracted:** {pages_extracted}")
+                
+                with col2:
+                    st.subheader("📊 Extraction Quality")
+                    extraction_results = scan_results.get("extraction_results", {})
+                    st.write(f"**Processing Time:** {extraction_results.get('processing_time', 0):.1f}s")
+                    st.write(f"**Success Rate:** {extraction_results.get('success_rate', 0):.1%}")
+                    st.write(f"**Method:** {scan_results.get('extraction_method', 'Unknown')}")
+                
+                # Create study materials
+                if pages_extracted > 0 and st.button("📚 Generate Study Materials", type="primary"):
+                    generate_study_materials_from_video(scan_results, course_name, chapter_name)
+            else:
+                st.error(f"Video processing failed: {scan_results.get('error', 'Unknown error')}")
+                
+        except Exception as e:
+            st.error(f"Error processing video: {e}")
+
+def analyze_weaknesses(uploaded_assignments, assignment_type, course_name, topic):
+    """Analyze uploaded assignments for weaknesses"""
+    with st.spinner("🎯 Analyzing your assignments for weakness patterns..."):
+        try:
+            # Initialize weakness analyzer
+            if 'weakness_analyzer' not in st.session_state:
+                st.session_state.weakness_analyzer = WeaknessAnalyzer()
+            
+            analyzer = st.session_state.weakness_analyzer
+            
+            # Analyze assignments
+            st.info("🔍 Scanning assignments and identifying mistakes...")
+            analysis_results = analyzer.analyze_test_homework(
+                uploaded_assignments, assignment_type, course_name, topic
+            )
+            
+            if analysis_results.get("mistakes_identified"):
+                mistakes_count = len(analysis_results["mistakes_identified"])
+                st.success(f"✅ Analysis complete! Found {mistakes_count} mistake patterns.")
+                
+                # Display weakness analysis
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    st.subheader("🎯 Weakness Patterns")
+                    weakness_patterns = analysis_results.get("weakness_patterns", {})
+                    
+                    if weakness_patterns.get("top_weak_concepts"):
+                        st.write("**Top Weakness Areas:**")
+                        for concept, frequency in weakness_patterns["top_weak_concepts"]:
+                            st.write(f"• {concept}: {frequency} mistakes")
+                    
+                    st.metric("Overall Weakness Score", f"{weakness_patterns.get('weakness_score', 0):.1%}")
+                
+                with col2:
+                    st.subheader("🔮 Predictions & Recommendations")
+                    predictions = analysis_results.get("predictions", {})
+                    
+                    st.write(f"**Risk Level:** {predictions.get('overall_prediction', 'Unknown')}")
+                    
+                    recommendations = analysis_results.get("recommendations", [])
+                    if recommendations:
+                        st.write("**Top Recommendations:**")
+                        for rec in recommendations[:3]:
+                            st.write(f"• {rec.get('recommendation', 'No recommendation')}")
+                
+                # Detailed analysis
+                with st.expander("📊 Detailed Analysis"):
+                    st.json(analysis_results)
+                
+                # Proactive study plan
+                if st.button("📋 Generate Proactive Study Plan", type="primary"):
+                    generate_proactive_study_plan(analysis_results, course_name, topic)
+                    
+            else:
+                st.warning("No clear mistake patterns identified. Try uploading more assignments or ensure images are clear.")
+                
+        except Exception as e:
+            st.error(f"Error analyzing weaknesses: {e}")
+
+def generate_study_materials_from_photos(batch_results, course_name, chapter_name):
+    """Generate study materials from processed photos"""
+    try:
+        # Combine all extracted text
+        combined_text = ""
+        for photo in batch_results["processed_photos"]:
+            combined_text += photo.get("extracted_text", "") + "\n\n"
+        
+        if combined_text.strip():
+            # Initialize processors
+            textbook_processor = TextbookProcessor()
+            study_guide_gen = StudyGuideGenerator()
+            flashcard_gen = FlashcardGenerator()
+            
+            # Analyze combined content
+            analysis = textbook_processor.analyze_textbook_content(
+                combined_text, course_name, chapter_name, "Comprehensive Overview"
+            )
+            
+            # Generate study materials
+            study_guide = study_guide_gen.create_textbook_study_guide(
+                combined_text, analysis, course_name, chapter_name, "Phone Photos"
+            )
+            
+            flashcards = flashcard_gen.generate_textbook_flashcards(
+                analysis, course_name, chapter_name
+            )
+            
+            # Store and display results
+            st.success("📚 Study materials generated from your photos!")
+            
+            # Add to flashcards
+            if 'flashcards' not in st.session_state:
+                st.session_state.flashcards = []
+            
+            st.session_state.flashcards.append({
+                'name': f"{course_name} - {chapter_name} (Photos)",
+                'subject': course_name,
+                'cards': flashcards,
+                'created': datetime.now().strftime("%Y-%m-%d %H:%M")
+            })
+            
+            # Create download package
+            download_path = create_textbook_download_package(
+                study_guide, flashcards, analysis, course_name, f"{chapter_name}_photos"
+            )
+            
+            with open(download_path, 'rb') as f:
+                st.download_button(
+                    label="📥 Download Photo Study Package",
+                    data=f.read(),
+                    file_name=f"{course_name}_{chapter_name}_photos_package.zip",
+                    mime="application/zip",
+                    type="primary"
+                )
+        else:
+            st.error("No text was extracted from the photos")
+            
+    except Exception as e:
+        st.error(f"Error generating study materials: {e}")
+
+def generate_study_materials_from_video(scan_results, course_name, chapter_name):
+    """Generate study materials from video scan results"""
+    try:
+        # Extract text from all pages
+        extraction_results = scan_results.get("extraction_results", {})
+        pages = extraction_results.get("pages", [])
+        
+        combined_text = ""
+        for page in pages:
+            combined_text += page.get("extracted_text", "") + "\n\n"
+        
+        if combined_text.strip():
+            # Generate study materials (similar to photos)
+            textbook_processor = TextbookProcessor()
+            study_guide_gen = StudyGuideGenerator()
+            flashcard_gen = FlashcardGenerator()
+            
+            analysis = textbook_processor.analyze_textbook_content(
+                combined_text, course_name, chapter_name, "Comprehensive Overview"
+            )
+            
+            study_guide = study_guide_gen.create_textbook_study_guide(
+                combined_text, analysis, course_name, chapter_name, "Video Scan"
+            )
+            
+            flashcards = flashcard_gen.generate_textbook_flashcards(
+                analysis, course_name, chapter_name
+            )
+            
+            st.success("🎥 Study materials generated from your video!")
+            
+            # Add to flashcards
+            if 'flashcards' not in st.session_state:
+                st.session_state.flashcards = []
+            
+            st.session_state.flashcards.append({
+                'name': f"{course_name} - {chapter_name} (Video)",
+                'subject': course_name,
+                'cards': flashcards,
+                'created': datetime.now().strftime("%Y-%m-%d %H:%M")
+            })
+            
+            # Create download package
+            download_path = create_textbook_download_package(
+                study_guide, flashcards, analysis, course_name, f"{chapter_name}_video"
+            )
+            
+            with open(download_path, 'rb') as f:
+                st.download_button(
+                    label="📥 Download Video Study Package",
+                    data=f.read(),
+                    file_name=f"{course_name}_{chapter_name}_video_package.zip",
+                    mime="application/zip",
+                    type="primary"
+                )
+        else:
+            st.error("No text was extracted from the video")
+            
+    except Exception as e:
+        st.error(f"Error generating study materials: {e}")
+
+def generate_proactive_study_plan(analysis_results, course_name, topic):
+    """Generate a proactive study plan based on weakness analysis"""
+    try:
+        st.subheader("📋 Your Personalized Proactive Study Plan")
+        
+        recommendations = analysis_results.get("recommendations", [])
+        weakness_patterns = analysis_results.get("weakness_patterns", {})
+        
+        # Priority actions
+        st.markdown("### 🚨 Immediate Actions (This Week)")
+        urgent_recs = [rec for rec in recommendations if rec.get("priority") == "urgent"]
+        if urgent_recs:
+            for rec in urgent_recs:
+                st.markdown(f"**{rec.get('recommendation', '')}**")
+                for action in rec.get("specific_actions", []):
+                    st.write(f"• {action}")
+        else:
+            st.write("✅ No urgent actions needed - you're doing well!")
+        
+        # Medium-term goals
+        st.markdown("### 📅 This Month's Focus Areas")
+        high_priority_recs = [rec for rec in recommendations if rec.get("priority") == "high"]
+        for rec in high_priority_recs:
+            st.markdown(f"**{rec.get('recommendation', '')}**")
+            for action in rec.get("specific_actions", []):
+                st.write(f"• {action}")
+        
+        # Concept-specific study plan
+        st.markdown("### 🎯 Concept-Specific Study Schedule")
+        top_weak_concepts = weakness_patterns.get("top_weak_concepts", [])
+        
+        for i, (concept, frequency) in enumerate(top_weak_concepts[:3]):
+            st.markdown(f"**Week {i+1}: Focus on {concept}**")
+            st.write(f"• Daily practice: 30 minutes on {concept}")
+            st.write(f"• Review mistakes: {frequency} previous errors to analyze")
+            st.write(f"• Create flashcards: 10-15 cards on {concept}")
+            st.write(f"• Practice problems: 5-10 problems daily")
+        
+        # Success metrics
+        st.markdown("### 📊 Track Your Progress")
+        st.write("**Weekly Goals:**")
+        st.write("• Complete 80% of daily practice sessions")
+        st.write("• Achieve 90% accuracy on practice problems")
+        st.write("• Review and understand all previous mistakes")
+        st.write("• Create and study new flashcards daily")
+        
+        st.success("🎯 Your proactive study plan is ready! Follow this plan to prevent future mistakes and improve your performance.")
+        
+    except Exception as e:
+        st.error(f"Error generating study plan: {e}")
+
+if __name__ == "__main__":
+    main()��29file:///c:/core/complete_workspace_package/archive/app.py

@@ -1,0 +1,98 @@
+Since you have not run anything past the V2 script, this knowledge allows us to refine the next steps perfectly. We can consolidate the two-pass logic (V2) with your new "Injection Folder" requirement into a single, comprehensive "Master Hunt" script.
+
+Running this consolidated script will ensure you capture the "complete sets" (project folders), "vacuum" the loose documents, and specifically target folders containing "injection" assets—all while maintaining the structure of other applications.
+
+The "Master Treasure-HUNT" Script (Pass 1 + Pass 2 + Injection)
+Implementation Instructions:
+
+Type notepad master_hunt.py in your PowerShell.
+
+Paste the following code:
+
+Python
+import os
+import shutil
+import datetime
+
+# Configuration
+TARGET_BASE = r"C:\Treasure-HUNT"
+LOG_FILE = os.path.join(TARGET_BASE, "Master_Retrieval_Manifest.txt")
+SEARCH_DRIVES = ["C:\\", "F:\\"]
+
+# target extensions for 'vacuum' phase
+TARGET_EXTS = ['.txt', '.json', '.md', '.py', '.pdf', '.docx', '.html', '.xhtml', '.log', '.csv']
+# Keywords for 'Complete Set' identification
+PROJECT_KEYWORDS = ["ai-orchestrator", "Whisper_Deck", "context-orchestrator"]
+# Keyword for 'Injection Folder' identification
+INJECTION_KEYWORD = "injection"
+
+def log_event(message):
+    with open(LOG_FILE, "a", encoding="utf-8") as log:
+        log.write(f"[{datetime.datetime.now()}] {message}\n")
+
+def master_hunt():
+    if not os.path.exists(TARGET_BASE):
+        os.makedirs(TARGET_BASE)
+    
+    log_event("--- MASTER HUNT INITIATED (Sets, Vacuum, and Injection Folders) ---")
+    moved_paths = set()
+
+    for drive in SEARCH_DRIVES:
+        # PASS 1: Identify Complete Project Sets AND Injection Folders
+        print(f"Pass 1: Identifying Folders (Sets & Injection) on {drive}...")
+        for root, dirs, files in os.walk(drive, topdown=False): # bottom-up for safe directory moving
+            if TARGET_BASE in root: continue
+            
+            # Check for Project Keywords in Folder Name
+            is_project_set = any(key in os.path.basename(root).lower() for key in PROJECT_KEYWORDS)
+            # Check for 'Injection' in filenames within this folder
+            has_injection_file = any(INJECTION_KEYWORD.lower() in f.lower() for f in files)
+
+            if is_project_set or has_injection_file:
+                src_dir = root
+                dst_dir = os.path.join(TARGET_BASE, f"CAPTURED_{os.path.basename(root)}")
+                
+                # Check if parent was already moved
+                if any(src_dir.startswith(moved) for moved in moved_paths):
+                    continue
+
+                try:
+                    log_event(f"FOLDER CAPTURE: {src_dir} (Reason: {'Project Set' if is_project_set else 'Injection Match'})")
+                    shutil.move(src_dir, dst_dir)
+                    moved_paths.add(src_dir)
+                    print(f"Captured Folder Set: {src_dir}")
+                except Exception as e:
+                    log_event(f"ERROR moving folder {src_dir}: {e}")
+
+        # PASS 2: Vacuum remaining Loose Files
+        print(f"Pass 2: Vacuuming loose files on {drive}...")
+        for root, _, files in os.walk(drive):
+            if TARGET_BASE in root: continue
+            
+            # Identify if we are in a 'Proper Folder' of another app
+            is_other_app = "readme.md" in [f.lower() for f in files] and not any(k in root.lower() for k in PROJECT_KEYWORDS)
+
+            for file in files:
+                file_path = os.path.join(root, file)
+                ext = os.path.splitext(file.lower())[1]
+
+                # Vacuum only if in target list, not moved already, and not a 'Proper README'
+                if ext in TARGET_EXTS and not any(file_path.startswith(moved) for moved in moved_paths):
+                    if "readme" in file.lower() and is_other_app:
+                        continue # Skip proper app READMEs
+                    
+                    try:
+                        dest_path = os.path.join(TARGET_BASE, f"LOOSE_{file}")
+                        shutil.move(file_path, dest_path)
+                        log_event(f"VACUUMED LOOSE FILE: {file_path}")
+                        print(f"Vacuumed: {file}")
+                    except Exception as e:
+                        log_event(f"ERROR vacuuming {file}: {e}")
+
+    print(f"\nMaster Hunt Complete. Results in {TARGET_BASE}")
+
+if __name__ == "__main__":
+    master_hunt()
+Save and Close Notepad.
+
+Run as Administrator: py master_hunt.py

@@ -1,0 +1,6 @@
+The robot mascot image has a white background baked into the PNG itself. mix-blend-screen makes the robot semi-transparent but the white background still shows as a card. The image file itself has a white background - not transparent. Options:
+1. Use the image as-is but style it to look intentional (like a card/badge)
+2. Generate a new version with transparent background
+3. Use CSS to clip/mask the white area
+
+Going with option 1 - style it as an intentional glass card that fits the design.

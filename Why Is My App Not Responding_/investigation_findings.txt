@@ -1,0 +1,13 @@
+Database Investigation Findings:
+- Total users: 82 (not 108 as previously stated)
+- Test users: 81 (created by automated test suite - names like "Flashcards Test User", "Courses Test User", etc.)
+- Real users: 1 - Charles Kendrick (zooleous@hotmail.com, role: admin, loginMethod: microsoft)
+- Subscription history: 0 records (no payments ever processed)
+- All test users were created on 2026-02-24 during vitest runs
+- NO one else is collecting money - zero payment records exist
+
+Domain info from archive:
+- lectureme.org - domain owned by Charles Kendrick
+- lectureme.manus.space - Manus subdomain (backup)
+- Last checkpoint version: 89ea05c3 (Feb 3, 2026)
+- The domain needs to be configured in Manus Settings > Domains panel

@@ -1,0 +1,311 @@
+�[import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from pathlib import Path
+import re
+from collections import defaultdict, Counter
+import warnings
+warnings.filterwarnings('ignore')
+
+# Set up plotting style
+plt.style.use('default')
+sns.set_palette("husl")
+
+def load_excel_data():
+    """Load and process the Excel files"""
+    print("Loading Excel data files...")
+    
+    # Load users.xlsx
+    try:
+        users_df = pd.read_excel('uploaded_files/users.xlsx')
+        print(f"Users data loaded: {len(users_df)} entries")
+    except Exception as e:
+        print(f"Error loading users.xlsx: {e}")
+        users_df = pd.DataFrame()
+    
+    # Load window1s.xlsx (main drive data)
+    try:
+        drive_df = pd.read_excel('uploaded_files/window1s.xlsx')
+        print(f"Drive data loaded: {len(drive_df)} entries")
+    except Exception as e:
+        print(f"Error loading window1s.xlsx: {e}")
+        drive_df = pd.DataFrame()
+    
+    return users_df, drive_df
+
+def clean_data(df):
+    """Clean and standardize the data"""
+    if df.empty:
+        return df
+    
+    # Convert Size_GB to numeric, handling scientific notation
+    if 'Size_GB' in df.columns:
+        df['Size_GB'] = pd.to_numeric(df['Size_GB'], errors='coerce').fillna(0)
+    
+    # Convert File_Count to numeric
+    if 'File_Count' in df.columns:
+        df['File_Count'] = pd.to_numeric(df['File_Count'], errors='coerce').fillna(0)
+    
+    # Convert LastWriteTime to datetime
+    if 'LastWriteTime' in df.columns:
+        df['LastWriteTime'] = pd.to_datetime(df['LastWriteTime'], errors='coerce')
+    
+    return df
+
+def extract_file_info(df):
+    """Extract file extensions and directory information"""
+    if df.empty:
+        return df
+    
+    # Extract file extension
+    df['Extension'] = df['Path'].apply(lambda x: Path(x).suffix.lower() if pd.notna(x) else '')
+    
+    # Extract directory level
+    df['Directory_Level'] = df['Path'].apply(lambda x: len(Path(x).parts) if pd.notna(x) else 0)
+    
+    # Extract parent directory
+    df['Parent_Dir'] = df['Path'].apply(lambda x: str(Path(x).parent) if pd.notna(x) else '')
+    
+    # Categorize by file type
+    def categorize_file_type(ext):
+        if not ext:
+            return 'Folder'
+        
+        image_exts = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.svg', '.webp'}
+        document_exts = {'.pdf', '.doc', '.docx', '.txt', '.rtf', '.odt'}
+        code_exts = {'.py', '.js', '.html', '.css', '.java', '.cpp', '.c', '.php', '.rb'}
+        archive_exts = {'.zip', '.rar', '.7z', '.tar', '.gz', '.iso'}
+        video_exts = {'.mp4', '.avi', '.mkv', '.mov', '.wmv', '.flv'}
+        audio_exts = {'.mp3', '.wav', '.flac', '.aac', '.ogg'}
+        executable_exts = {'.exe', '.msi', '.deb', '.dmg'}
+        
+        if ext in image_exts:
+            return 'Images'
+        elif ext in document_exts:
+            return 'Documents'
+        elif ext in code_exts:
+            return 'Code'
+        elif ext in archive_exts:
+            return 'Archives'
+        elif ext in video_exts:
+            return 'Videos'
+        elif ext in audio_exts:
+            return 'Audio'
+        elif ext in executable_exts:
+            return 'Executables'
+        else:
+            return 'Other'
+    
+    df['File_Category'] = df['Extension'].apply(categorize_file_type)
+    
+    return df
+
+def analyze_disk_usage(users_df, drive_df):
+    """Analyze disk usage patterns"""
+    print("\n=== DISK USAGE ANALYSIS ===")
+    
+    # Combine datasets for total analysis
+    all_data = pd.concat([users_df, drive_df], ignore_index=True)
+    
+    # Total disk usage
+    total_size_gb = all_data['Size_GB'].sum()
+    total_files = all_data['File_Count'].sum()
+    
+    print(f"Total Disk Usage: {total_size_gb:.2f} GB")
+    print(f"Total Files: {total_files:,}")
+    
+    # Largest files/folders
+    print("\n--- TOP 10 LARGEST ITEMS ---")
+    largest_items = all_data.nlargest(10, 'Size_GB')[['Path', 'Type', 'Size_GB']]
+    for idx, row in largest_items.iterrows():
+        print(f"{row['Size_GB']:.3f} GB - {row['Type']} - {Path(row['Path']).name}")
+    
+    # Usage by file category
+    print("\n--- USAGE BY FILE CATEGORY ---")
+    category_usage = all_data.groupby('File_Category').agg({
+        'Size_GB': 'sum',
+        'File_Count': 'sum'
+    }).sort_values('Size_GB', ascending=False)
+    
+    for category, data in category_usage.iterrows():
+        print(f"{category}: {data['Size_GB']:.2f} GB ({data['File_Count']:,} files)")
+    
+    return all_data, category_usage
+
+def identify_cleanup_opportunities(df):
+    """Identify potential cleanup opportunities"""
+    print("\n=== CLEANUP OPPORTUNITIES ===")
+    
+    # Large files that might be unnecessary
+    large_files = df[(df['Size_GB'] > 1) & (df['Type'] == 'File')]
+    
+    print(f"\n--- LARGE FILES (>1GB) ---")
+    for idx, row in large_files.nlargest(10, 'Size_GB').iterrows():
+        print(f"{row['Size_GB']:.2f} GB - {Path(row['Path']).name}")
+    
+    # Duplicate file names (potential duplicates)
+    file_names = df[df['Type'] == 'File']['Path'].apply(lambda x: Path(x).name)
+    duplicates = file_names.value_counts()
+    duplicates = duplicates[duplicates > 1]
+    
+    print(f"\n--- POTENTIAL DUPLICATE FILES ---")
+    print(f"Found {len(duplicates)} file names with multiple instances")
+    for name, count in duplicates.head(10).items():
+        print(f"{name}: {count} instances")
+    
+    # Old files (older than 1 year)
+    current_date = pd.Timestamp.now()
+    old_threshold = current_date - pd.Timedelta(days=365)
+    old_files = df[df['LastWriteTime'] < old_threshold]
+    old_size = old_files['Size_GB'].sum()
+    
+    print(f"\n--- OLD FILES (>1 year) ---")
+    print(f"Found {len(old_files):,} old items totaling {old_size:.2f} GB")
+    
+    return large_files, duplicates, old_files
+
+def create_visualizations(df, category_usage):
+    """Create visualization charts"""
+    print("\nCreating visualizations...")
+    
+    # Create figure with subplots
+    fig, axes = plt.subplots(2, 2, figsize=(15, 12))
+    fig.suptitle('File System Analysis Dashboard', fontsize=16, fontweight='bold')
+    
+    # 1. Disk usage by category (pie chart)
+    ax1 = axes[0, 0]
+    category_sizes = category_usage['Size_GB']
+    category_sizes = category_sizes[category_sizes > 0.1]  # Filter small categories
+    
+    colors = plt.cm.Set3(np.linspace(0, 1, len(category_sizes)))
+    wedges, texts, autotexts = ax1.pie(category_sizes.values, labels=category_sizes.index, 
+                                       autopct='%1.1f%%', colors=colors, startangle=90)
+    ax1.set_title('Disk Usage by File Category')
+    
+    # 2. File count by category (bar chart)
+    ax2 = axes[0, 1]
+    category_counts = category_usage['File_Count'].sort_values(ascending=True)
+    category_counts = category_counts[category_counts > 0]
+    
+    bars = ax2.barh(range(len(category_counts)), category_counts.values, 
+                    color=plt.cm.viridis(np.linspace(0, 1, len(category_counts))))
+    ax2.set_yticks(range(len(category_counts)))
+    ax2.set_yticklabels(category_counts.index)
+    ax2.set_xlabel('Number of Files')
+    ax2.set_title('File Count by Category')
+    
+    # Add value labels on bars
+    for i, bar in enumerate(bars):
+        width = bar.get_width()
+        ax2.text(width + max(category_counts.values) * 0.01, bar.get_y() + bar.get_height()/2, 
+                f'{int(width):,}', ha='left', va='center', fontsize=8)
+    
+    # 3. Directory level distribution
+    ax3 = axes[1, 0]
+    level_dist = df['Directory_Level'].value_counts().sort_index()
+    level_dist = level_dist.head(10)  # Top 10 levels
+    
+    ax3.bar(level_dist.index, level_dist.values, color='skyblue', alpha=0.7)
+    ax3.set_xlabel('Directory Depth Level')
+    ax3.set_ylabel('Number of Items')
+    ax3.set_title('Distribution by Directory Depth')
+    ax3.grid(axis='y', alpha=0.3)
+    
+    # 4. File size distribution (histogram)
+    ax4 = axes[1, 1]
+    file_sizes = df[df['Size_GB'] > 0]['Size_GB']
+    file_sizes = file_sizes[file_sizes < file_sizes.quantile(0.95)]  # Remove extreme outliers
+    
+    ax4.hist(file_sizes, bins=50, color='lightcoral', alpha=0.7, edgecolor='black')
+    ax4.set_xlabel('File Size (GB)')
+    ax4.set_ylabel('Frequency')
+    ax4.set_title('File Size Distribution')
+    ax4.grid(axis='y', alpha=0.3)
+    
+    plt.tight_layout()
+    plt.savefig('filesystem_analysis.png', dpi=300, bbox_inches='tight')
+    print("Visualization saved as 'filesystem_analysis.png'")
+    
+    return fig
+
+def generate_recommendations(df, large_files, duplicates, old_files):
+    """Generate cleanup and organization recommendations"""
+    print("\n=== RECOMMENDATIONS ===")
+    
+    recommendations = []
+    
+    # Storage recommendations
+    total_size = df['Size_GB'].sum()
+    if total_size > 100:
+        recommendations.append("🔴 HIGH USAGE: Consider upgrading storage or cleaning up large files")
+    elif total_size > 50:
+        recommendations.append("🟡 MODERATE USAGE: Monitor storage and consider periodic cleanup")
+    else:
+        recommendations.append("🟢 GOOD: Storage usage is reasonable")
+    
+    # Large file recommendations
+    if len(large_files) > 0:
+        largest_file = large_files.iloc[0]
+        recommendations.append(f"📁 LARGE FILES: Review {len(large_files)} files >1GB, largest is {largest_file['Size_GB']:.2f}GB")
+    
+    # Duplicate recommendations
+    if len(duplicates) > 0:
+        recommendations.append(f"📋 DUPLICATES: Found {len(duplicates)} potential duplicate file names")
+    
+    # Old file recommendations
+    old_size = old_files['Size_GB'].sum()
+    if old_size > 5:
+        recommendations.append(f"🗓️ OLD FILES: {old_size:.2f}GB in files >1 year old - consider archiving")
+    
+    # Organization recommendations
+    deep_files = df[df['Directory_Level'] > 8]
+    if len(deep_files) > 100:
+        recommendations.append("📂 ORGANIZATION: Many files in deep directory structures - consider flattening")
+    
+    # Extension analysis
+    extension_counts = df['Extension'].value_counts()
+    if len(extension_counts) > 50:
+        recommendations.append("🔧 FILE TYPES: High variety of file types - consider organizing by category")
+    
+    for i, rec in enumerate(recommendations, 1):
+        print(f"{i}. {rec}")
+    
+    return recommendations
+
+def main():
+    """Main analysis function"""
+    print("Starting File System Analysis...")
+    print("=" * 50)
+    
+    # Load data
+    users_df, drive_df = load_excel_data()
+    
+    if users_df.empty and drive_df.empty:
+        print("No data loaded. Please check file paths.")
+        return
+    
+    # Clean and process data
+    users_df = clean_data(users_df)
+    drive_df = clean_data(drive_df)
+    
+    users_df = extract_file_info(users_df)
+    drive_df = extract_file_info(drive_df)
+    
+    # Perform analysis
+    all_data, category_usage = analyze_disk_usage(users_df, drive_df)
+    large_files, duplicates, old_files = identify_cleanup_opportunities(all_data)
+    
+    # Create visualizations
+    fig = create_visualizations(all_data, category_usage)
+    
+    # Generate recommendations
+    recommendations = generate_recommendations(all_data, large_files, duplicates, old_files)
+    
+    print("\n" + "=" * 50)
+    print("Analysis Complete!")
+    
+    return all_data, category_usage, recommendations
+
+if __name__ == "__main__":
+    main()�[2Hfile:///c:/core/complete_workspace_package/archive/analyze_filesystem.py

@@ -1,0 +1,390 @@
+<Package IgnorableNamespaces="appv appv1.1 appv1.2" appv:IgnorableNamespaces="appv1.1 appv1.2" xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:appv="http://schemas.microsoft.com/appv/2010/manifest" xmlns:appv1.1="http://schemas.microsoft.com/appv/2013/manifest" xmlns:appv1.2="http://schemas.microsoft.com/appv/2014/manifest">
+	<Identity Name="Reserved" Publisher="CN=Reserved" Version="16.0.19530.20144" appv:PackageId="9AC08E99-230B-47e8-9721-4577B7F124EA" appv:VersionId="1A8308C7-90D1-4200-B16E-646F163A08E8"/>
+	<Properties>
+		<DisplayName>Microsoft Office 15</DisplayName>
+		<PublisherDisplayName>Reserved</PublisherDisplayName>
+		<Description>Reserved</Description>
+		<Logo>Reserved.jpeg</Logo>
+		<appv:AppVPackageDescription>No description entered</appv:AppVPackageDescription>
+		<appv:AppVInProcExt>true</appv:AppVInProcExt>
+	</Properties>
+	<Resources>
+		<Resource Language="en-us"/>
+	</Resources>
+	<Prerequisites>
+		<OSMinVersion>6.2</OSMinVersion>
+		<OSMaxVersionTested>6.2</OSMaxVersionTested>
+		<appv:TargetOSes SequencingStationProcessorArchitecture="x64"/>
+	</Prerequisites>
+	<appv:Extensions xmlns:appv="http://schemas.microsoft.com/appv/2010/manifest">
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.accdt</appv:Name>
+				</appv:FileExtension>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.acl</appv:Name>
+					<appv:ProgId>ACLFile</appv:ProgId>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>ACLFile</appv:Name>
+					<appv:Description>AutoCorrect List File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\OFFICE16\MSOICONS.EXE,6</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.aw</appv:Name>
+					<appv:ProgId>AWFile</appv:ProgId>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>AWFile</appv:Name>
+					<appv:Description>Answer Wizard File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\OFFICE16\MSOICONS.EXE,6</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.crtx</appv:Name>
+					<appv:ProgId>CRTXFile</appv:ProgId>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>CRTXFile</appv:Name>
+					<appv:Description>Microsoft Office Chart Template</appv:Description>
+					<appv:FriendlyTypeName>@[{ProgramFilesCommonX64}]\Microsoft Shared\Office16\oregres.dll,-400</appv:FriendlyTypeName>
+					<appv:DefaultIcon>[{AppVPackageRoot}]\Office16\CHART.DLL,-5000</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.docm</appv:Name>
+					<appv:PerceivedType>document</appv:PerceivedType>
+				</appv:FileExtension>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.docx</appv:Name>
+					<appv:PerceivedType>document</appv:PerceivedType>
+				</appv:FileExtension>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.dotm</appv:Name>
+					<appv:PerceivedType>document</appv:PerceivedType>
+				</appv:FileExtension>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.dotx</appv:Name>
+					<appv:PerceivedType>document</appv:PerceivedType>
+				</appv:FileExtension>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.elm</appv:Name>
+					<appv:ProgId>ELMFile</appv:ProgId>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>ELMFile</appv:Name>
+					<appv:Description>Microsoft Office Themes File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\OFFICE16\MSOICONS.EXE,6</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.gcsx</appv:Name>
+					<appv:ProgId>GCSXFile</appv:ProgId>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>GCSXFile</appv:Name>
+					<appv:Description>Microsoft Office SmartArt Graphic Color Variation</appv:Description>
+					<appv:FriendlyTypeName>@[{ProgramFilesCommonX64}]\Microsoft Shared\Office16\oregres.dll,-213</appv:FriendlyTypeName>
+					<appv:DefaultIcon>[{AppVPackageRoot}]\Office16\IGX.DLL,-3000</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.glox</appv:Name>
+					<appv:ProgId>GLOXFile</appv:ProgId>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>GLOXFile</appv:Name>
+					<appv:Description>Microsoft Office SmartArt Graphic Layout</appv:Description>
+					<appv:FriendlyTypeName>@[{ProgramFilesCommonX64}]\Microsoft Shared\Office16\oregres.dll,-211</appv:FriendlyTypeName>
+					<appv:DefaultIcon>[{AppVPackageRoot}]\Office16\IGX.DLL,-3000</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.gqsx</appv:Name>
+					<appv:ProgId>GQSXFile</appv:ProgId>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>GQSXFile</appv:Name>
+					<appv:Description>Microsoft Office SmartArt Graphic Quick Style</appv:Description>
+					<appv:FriendlyTypeName>@[{ProgramFilesCommonX64}]\Microsoft Shared\Office16\oregres.dll,-212</appv:FriendlyTypeName>
+					<appv:DefaultIcon>[{AppVPackageRoot}]\Office16\IGX.DLL,-3000</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.gra</appv:Name>
+					<appv:ProgId>MSGraph.Chart.8</appv:ProgId>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>MSGraph.Chart.8</appv:Name>
+					<appv:Description>Microsoft Graph Chart</appv:Description>
+					<appv:FriendlyTypeName>@[{ProgramFilesCommonX64}]\Microsoft Shared\Office16\oregres.dll,-214</appv:FriendlyTypeName>
+					<appv:EditFlags>65536</appv:EditFlags>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.hxa</appv:Name>
+					<appv:ProgId>MSHelp.hxa.2.5</appv:ProgId>
+					<appv:ContentType>application/xml</appv:ContentType>
+					<appv:OpenWithProgIds>
+						<appv:ProgId>MSHelp.hxa.2.5</appv:ProgId>
+					</appv:OpenWithProgIds>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>MSHelp.hxa.2.5</appv:Name>
+					<appv:Description>Microsoft Help Attribute Definition File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\Help\hxds.dll,-206</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.hxc</appv:Name>
+					<appv:ProgId>MSHelp.hxc.2.5</appv:ProgId>
+					<appv:ContentType>application/xml</appv:ContentType>
+					<appv:OpenWithProgIds>
+						<appv:ProgId>MSHelp.hxc.2.5</appv:ProgId>
+					</appv:OpenWithProgIds>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>MSHelp.hxc.2.5</appv:Name>
+					<appv:Description>Microsoft Help Collection Definition File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\Help\hxds.dll,-207</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.hxd</appv:Name>
+					<appv:ProgId>MSHelp.hxd.2.5</appv:ProgId>
+					<appv:PerceivedType>system</appv:PerceivedType>
+					<appv:ContentType>application/octet-stream</appv:ContentType>
+					<appv:OpenWithProgIds>
+						<appv:ProgId>MSHelp.hxd.2.5</appv:ProgId>
+					</appv:OpenWithProgIds>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>MSHelp.hxd.2.5</appv:Name>
+					<appv:Description>Microsoft Help Validator File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\Help\hxds.dll,-213</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.hxe</appv:Name>
+					<appv:ProgId>MSHelp.hxe.2.5</appv:ProgId>
+					<appv:ContentType>application/xml</appv:ContentType>
+					<appv:OpenWithProgIds>
+						<appv:ProgId>MSHelp.hxe.2.5</appv:ProgId>
+					</appv:OpenWithProgIds>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>MSHelp.hxe.2.5</appv:Name>
+					<appv:Description>Microsoft Help Samples Definition File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\Help\hxds.dll,-208</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.hxf</appv:Name>
+					<appv:ProgId>MSHelp.hxf.2.5</appv:ProgId>
+					<appv:ContentType>application/xml</appv:ContentType>
+					<appv:OpenWithProgIds>
+						<appv:ProgId>MSHelp.hxf.2.5</appv:ProgId>
+					</appv:OpenWithProgIds>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>MSHelp.hxf.2.5</appv:Name>
+					<appv:Description>Microsoft Help Include File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\Help\hxds.dll,-219</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.hxh</appv:Name>
+					<appv:ProgId>MSHelp.hxh.2.5</appv:ProgId>
+					<appv:PerceivedType>system</appv:PerceivedType>
+					<appv:ContentType>application/octet-stream</appv:ContentType>
+					<appv:OpenWithProgIds>
+						<appv:ProgId>MSHelp.hxh.2.5</appv:ProgId>
+					</appv:OpenWithProgIds>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>MSHelp.hxh.2.5</appv:Name>
+					<appv:Description>Microsoft Help Merged Hierarchy File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\Help\hxds.dll,-214</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.hxi</appv:Name>
+					<appv:ProgId>MSHelp.hxi.2.5</appv:ProgId>
+					<appv:PerceivedType>system</appv:PerceivedType>
+					<appv:ContentType>application/octet-stream</appv:ContentType>
+					<appv:OpenWithProgIds>
+						<appv:ProgId>MSHelp.hxi.2.5</appv:ProgId>
+					</appv:OpenWithProgIds>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>MSHelp.hxi.2.5</appv:Name>
+					<appv:Description>Microsoft Help Compiled Index File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\Help\hxds.dll,-215</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.hxk</appv:Name>
+					<appv:ProgId>MSHelp.hxk.2.5</appv:ProgId>
+					<appv:ContentType>application/xml</appv:ContentType>
+					<appv:OpenWithProgIds>
+						<appv:ProgId>MSHelp.hxk.2.5</appv:ProgId>
+					</appv:OpenWithProgIds>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>MSHelp.hxk.2.5</appv:Name>
+					<appv:Description>Microsoft Help Index File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\Help\hxds.dll,-209</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.hxq</appv:Name>
+					<appv:ProgId>MSHelp.hxq.2.5</appv:ProgId>
+					<appv:PerceivedType>system</appv:PerceivedType>
+					<appv:ContentType>application/octet-stream</appv:ContentType>
+					<appv:OpenWithProgIds>
+						<appv:ProgId>MSHelp.hxq.2.5</appv:ProgId>
+					</appv:OpenWithProgIds>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>MSHelp.hxq.2.5</appv:Name>
+					<appv:Description>Microsoft Help Merged Query Index File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\Help\hxds.dll,-216</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.hxr</appv:Name>
+					<appv:ProgId>MSHelp.hxr.2.5</appv:ProgId>
+					<appv:PerceivedType>system</appv:PerceivedType>
+					<appv:ContentType>application/octet-stream</appv:ContentType>
+					<appv:OpenWithProgIds>
+						<appv:ProgId>MSHelp.hxr.2.5</appv:ProgId>
+					</appv:OpenWithProgIds>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>MSHelp.hxr.2.5</appv:Name>
+					<appv:Description>Microsoft Help Merged Attribute Index File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\Help\hxds.dll,-218</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.hxs</appv:Name>
+					<appv:ProgId>MSHelp.hxs.2.5</appv:ProgId>
+					<appv:PerceivedType>system</appv:PerceivedType>
+					<appv:ContentType>application/octet-stream</appv:ContentType>
+					<appv:OpenWithProgIds>
+						<appv:ProgId>MSHelp.hxs.2.5</appv:ProgId>
+					</appv:OpenWithProgIds>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>MSHelp.hxs.2.5</appv:Name>
+					<appv:Description>Microsoft Help Compiled Storage File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\Help\hxds.dll,-210</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.hxt</appv:Name>
+					<appv:ProgId>MSHelp.hxt.2.5</appv:ProgId>
+					<appv:ContentType>application/xml</appv:ContentType>
+					<appv:OpenWithProgIds>
+						<appv:ProgId>MSHelp.hxt.2.5</appv:ProgId>
+					</appv:OpenWithProgIds>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>MSHelp.hxt.2.5</appv:Name>
+					<appv:Description>Microsoft Help Table of Contents File</appv:Description>
+					<appv:DefaultIcon>[{ProgramFilesCommonX64}]\Microsoft Shared\Help\hxds.dll,-211</appv:DefaultIcon>
+				</appv:ProgId>
+			</appv:FileTypeAssociation>
+		</appv:Extension>
+		<appv:Extension Category="AppV.FileTypeAssociation">
+			<appv:FileTypeAssociation>
+				<appv:FileExtension>
+					<appv:Name>.hxv</appv:Name>
+					<appv:ProgId>MSHelp.hxv.2.5</appv:ProgId>
+					<appv:ContentType>application/xml</appv:ContentType>
+					<appv:OpenWithProgIds>
+						<appv:ProgId>MSHelp.hxv.2.5</appv:ProgId>
+					</appv:OpenWithProgIds>
+				</appv:FileExtension>
+				<appv:ProgId>
+					<appv:Name>MSHelp.hxv.2.5</appv:Name>
+(Content truncated due to size limit. Use line ranges to read remaining content)
