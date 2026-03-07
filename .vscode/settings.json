@@ -1,0 +1,42 @@
+{
+    "chat.allowAnonymousAccess": false,
+    "chat.useHooks": false,
+    "chat.useClaudeMdFile": false,
+    "chat.useAgentsMdFile": false,
+    "chat.promptFilesLocations": {
+        ".github/prompts": false
+    },
+    "chat.instructionsFilesLocations": {
+        ".github/instructions": false,
+        ".claude/rules": false,
+        "~/.copilot/instructions": false,
+        "~/.claude/rules": false
+    },
+    "chat.detectParticipant.enabled": false,
+    "chat.agentFilesLocations": {
+        ".github/agents": false,
+        ".claude/agents": false
+    },
+    "chat.mcp.autostart": "never",
+    "chat.mcp.apps.enabled": false,
+    "chat.tools.terminal.blockDetectedFileWrites": "all",
+    "chat.tools.terminal.autoApproveWorkspaceNpmScripts": false,
+    "chat.tools.usagesTool.enabled": false,
+    "chat.tools.renameTool.enabled": false,
+    "chat.tools.todos.showWidget": false,
+    "chat.tools.terminal.preventShellHistory": false,
+    "chat.tools.terminal.enableAutoApprove": false,
+    "chat.tools.edits.autoApprove": {
+        "**/*": false
+    },
+    "chat.tools.autoExpandFailures": true,
+    "chat.extensionTools.enabled": false,
+    "chat.extensionUnification.enabled": false,
+    "chat.editMode.hidden": false,
+    "chat.agentsControl.enabled": false,
+    "chat.math.enabled": false,
+    "chat.editor.wordWrap": "on",
+    "chat.checkpoints.showFileChanges": true,
+    "chat.customAgentInSubagent.enabled": false,
+    "chat.agent.enabled": false
+}
