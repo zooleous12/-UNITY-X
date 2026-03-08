@@ -1,0 +1,27 @@
+{
+  "user_profile": {
+    "name": "Charles Kendrick",
+    "location": "Maricopa, AZ",
+    "background": [
+      "AI Orchestration Developer",
+      "Context injection and workflow optimization specialist"
+    ]
+  },
+  "test_data": {
+    "timestamp": "2024-12-09",
+    "purpose": "Testing encode/decode cycle",
+    "features": [
+      "Base64 + JSON encoding",
+      "Base64 + GZIP + JSON compression",
+      "Base85 + GZIP + JSON optimization",
+      "PNG text chunk embedding",
+      "Automatic smallest payload selection"
+    ]
+  },
+  "encoding_test": {
+    "compression_methods": ["gzip", "base64", "base85"],
+    "output_formats": ["base64_file", "png_embedding"],
+    "placeholder_substitution": true,
+    "auto_optimization": true
+  }
+}

@@ -1,0 +1,395 @@
+dbus-update-activation-environment: setting DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+dbus-update-activation-environment: setting DISPLAY=:0
+dbus-update-activation-environment: setting XAUTHORITY=/home/zooleous/.Xauthority
+/etc/X11/Xsession.d/30x11-common_xresources: line 16: has_option: command not found
+/etc/X11/Xsession.d/75dbus_dbus-launch: line 9: has_option: command not found
+dbus-update-activation-environment: setting GTK_MODULES=gail:atk-bridge
+dbus-update-activation-environment: setting QT_ACCESSIBILITY=1
+/etc/X11/Xsession.d/90x11-common_ssh-agent: line 9: has_option: command not found
+dbus-update-activation-environment: setting SHELL=/bin/bash
+dbus-update-activation-environment: setting QT_ACCESSIBILITY=1
+dbus-update-activation-environment: setting XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg
+dbus-update-activation-environment: setting GTK_IM_MODULE=ibus
+dbus-update-activation-environment: setting LANGUAGE=en_US
+dbus-update-activation-environment: setting XMODIFIERS=@im=ibus
+dbus-update-activation-environment: setting DESKTOP_SESSION=cinnamon
+dbus-update-activation-environment: setting GTK_MODULES=gail:atk-bridge
+dbus-update-activation-environment: setting PWD=/home/zooleous
+dbus-update-activation-environment: setting XDG_SESSION_DESKTOP=cinnamon
+dbus-update-activation-environment: setting LOGNAME=zooleous
+dbus-update-activation-environment: setting XDG_SESSION_TYPE=x11
+dbus-update-activation-environment: setting GPG_AGENT_INFO=/run/user/1000/gnupg/S.gpg-agent:0:1
+dbus-update-activation-environment: setting XAUTHORITY=/home/zooleous/.Xauthority
+dbus-update-activation-environment: setting XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/zooleous
+dbus-update-activation-environment: setting GDM_LANG=en_US
+dbus-update-activation-environment: setting HOME=/home/zooleous
+dbus-update-activation-environment: setting IM_CONFIG_PHASE=1
+dbus-update-activation-environment: setting LANG=en_US.UTF-8
+dbus-update-activation-environment: setting CLUTTER_IM_MODULE=ibus
+dbus-update-activation-environment: setting XDG_SESSION_CLASS=user
+dbus-update-activation-environment: setting USER=zooleous
+dbus-update-activation-environment: setting DISPLAY=:0
+dbus-update-activation-environment: setting SHLVL=0
+dbus-update-activation-environment: setting QT_IM_MODULE=ibus
+dbus-update-activation-environment: setting XDG_RUNTIME_DIR=/run/user/1000
+dbus-update-activation-environment: setting GTK3_MODULES=xapp-gtk3-module
+dbus-update-activation-environment: setting XDG_DATA_DIRS=/usr/share/cinnamon:/home/zooleous/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+dbus-update-activation-environment: setting PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+dbus-update-activation-environment: setting GDMSESSION=cinnamon
+dbus-update-activation-environment: setting DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+dbus-update-activation-environment: setting _=/usr/bin/dbus-update-activation-environment
+_IceTransmkdir: ERROR: euid != 0,directory /tmp/.ICE-unix will not be created.
+discover_other_daemon: 1discover_other_daemon: 1discover_other_daemon: 1[cinnamon-settings-daemon-smartcard] Failed to start: no suitable smartcard driver could be found
+/usr/bin/cinnamon-launcher:61: DeprecationWarning: This process (pid=2054) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.cinnamon_pid = os.fork()
+muffin-Message: 22:07:12.304: Enabling experimental feature 'scale-monitor-framebuffer'
+muffin-Message: 22:07:12.304: Enabling experimental feature 'x11-randr-fractional-scaling'
+Gjs-Message: 22:07:14.004: Profiler is disabled. Not setting up signals.
+Gjs-Message: 22:07:14.315: JS LOG: About to start Cinnamon (X11 backend)
+Gjs-Message: 22:07:14.408: JS LOG: [LookingGlass/info] Cinnamon.AppSystem.get_default() started in 0 ms
+Gjs-Message: 22:07:14.411: JS LOG: [LookingGlass/info] loading user theme: /usr/share/themes/Mint-Y-Dark-Red/cinnamon/cinnamon.css
+Gjs-Message: 22:07:14.433: JS LOG: [LookingGlass/info] added icon directory: /usr/share/themes/Mint-Y-Dark-Red/cinnamon
+Gjs-Message: 22:07:14.562: JS LOG: [LookingGlass/info] Set up Touchegg client
+Gjs-Message: 22:07:14.679: JS LOG: [LookingGlass/info] Animations: enabled (hardware rendering, enabled in settings)
+Gjs-Message: 22:07:14.753: JS LOG: [LookingGlass/info] NetworkManager agent: enabled
+Gjs-Message: 22:07:14.764: JS LOG: [LookingGlass/info] Cinnamon registered as the Polkit agent for the active session (c2)
+Gjs-Message: 22:07:14.765: JS LOG: [LookingGlass/info] SSH agent: enabled
+Gjs-Message: 22:07:14.778: JS LOG: [LookingGlass/info] loaded at Sat Feb 07 2026 22:07:14 GMT-0700 (Mountain Standard Time)
+Gjs-Message: 22:07:14.778: JS LOG: Cinnamon started at Sat Feb 07 2026 22:07:14 GMT-0700 (Mountain Standard Time)
+current session already has an ibus-daemon.
+Gjs-Message: 22:07:14.976: JS LOG: [LookingGlass/info] SearchProviderManager started in 0 ms
+
+(cinnamon:2066): muffin-WARNING **: 22:07:15.027: Impossible to resize screen at size 1500x1000, error id 8: BadMatch (invalid parameter attributes)
+
+(csd-power:1885): csd-power-WARNING **: 22:07:15.199: ignoring critically low message as we are not on battery power
+Cannot register authentication agent: GDBus.Error:org.freedesktop.PolicyKit1.Error.Failed: An authentication agent already exists for the given subject
+remmina-Message: 22:07:16.473: Remmina does not log all output statements. Turn on more verbose output by using "G_MESSAGES_DEBUG=remmina" as an environment variable.
+More info available on the Remmina wiki at:
+https://gitlab.com/Remmina/Remmina/-/wikis/Usage/Remmina-debugging
+Gjs-Message: 22:07:16.591: JS LOG: [LookingGlass/info] Loaded applet favorites@cinnamon.org in 1392 ms
+Gjs-Message: 22:07:16.593: JS LOG: [LookingGlass/info] cinnamon-screenshot: enable() called
+Gjs-Message: 22:07:16.597: JS LOG: [LookingGlass/info] CS: Transitions enabled
+Gjs-Message: 22:07:16.597: JS LOG: [LookingGlass/info] Loaded extension cinnamon-screenshot@hilyxx in 4 ms
+Gjs-Message: 22:07:16.702: JS LOG: [LookingGlass/info] Loaded applet removable-drives@cinnamon.org in 98 ms
+Gjs-Message: 22:07:16.744: JS LOG: [LookingGlass/info] Loaded applet rswitcher@nixdev.com in 41 ms
+Gjs-Message: 22:07:16.748: JS LOG: [LookingGlass/info] Loaded extension focus-new-window@mdpenguin in 4 ms
+Gjs-Message: 22:07:16.767: JS LOG: [LookingGlass/info] Loaded applet ScreenShot@tech71 in 18 ms
+Gjs-Message: 22:07:16.772: JS LOG: [LookingGlass/info] Loaded extension NewWindowSettings@klangman in 5 ms
+Nemo-Message: 22:07:16.792: nemo-desktop: session is cinnamon, establishing proxy
+Gjs-Message: 22:07:16.795: JS LOG: [LookingGlass/info] Loaded extension transparent-panels@germanfr in 23 ms
+Gjs-Message: 22:07:16.818: JS LOG: [LookingGlass/info] Loaded applet on-screen-keyboard@cinnamon.org in 23 ms
+Gjs-Message: 22:07:16.843: JS LOG: [LookingGlass/info] Loaded desklet clock@cinnamon.org in 25 ms
+Gjs-Message: 22:07:16.982: JS LOG: [LookingGlass/info] Loaded extension gTile@shuairan in 139 ms
+Gjs-Message: 22:07:17.004: JS LOG: [LookingGlass/info] Loaded desklet launcher@cinnamon.org in 22 ms
+Gjs-Message: 22:07:17.052: JS LOG: [LookingGlass/info] Loaded applet notifications@cinnamon.org in 47 ms
+Gjs-Message: 22:07:17.147: JS LOG: [LookingGlass/info] Loaded applet printers@cinnamon.org in 95 ms
+Gjs-Message: 22:07:17.183: JS LOG: [LookingGlass/info] Loaded applet cornerbar@cinnamon.org in 36 ms
+Gjs-Message: 22:07:17.302: JS LOG: [LookingGlass/info] Loaded applet calendar@cinnamon.org in 118 ms
+Gjs-Message: 22:07:17.346: JS LOG: [LookingGlass/info] Loaded applet keyboard@cinnamon.org in 41 ms
+Gjs-Message: 22:07:17.374: JS LOG: [LookingGlass/info] Loaded desklet photoframe@cinnamon.org in 28 ms
+Gjs-Message: 22:07:17.517: JS LOG: [LookingGlass/info] Loaded desklet todo@NotSirius-A in 143 ms
+Gjs-Message: 22:07:17.649: JS LOG: [LookingGlass/info] Loaded applet xapp-status@cinnamon.org in 132 ms
+
+(cinnamon:2066): Gjs-WARNING **: 22:07:17.698: Some code accessed the property 'lgIFace' on the module 'lookingGlass'. That property was defined with 'let' or 'const' inside the module. This was previously supported, but is not correct according to the ES6 standard. Any symbols to be exported from a module must be defined with 'var'. The property access will work as previously for the time being, but please fix your code anyway.
+0 connectToLgDBus() ["/usr/share/cinnamon/js/misc/fileUtils.js line 211 > Function":203:20]
+1 _init() ["/usr/share/cinnamon/js/misc/fileUtils.js line 211 > Function":199:13]
+2 CinnamonLogInterface() ["/usr/share/cinnamon/js/misc/fileUtils.js line 211 > Function":126:9]
+3 addDefaultTabs() ["/usr/share/cinnamon/js/misc/fileUtils.js line 211 > Function":490:19]
+4 buildLayout() ["/usr/share/cinnamon/js/misc/fileUtils.js line 211 > Function":395:17]
+5 _init() ["/usr/share/cinnamon/js/misc/fileUtils.js line 211 > Function":289:17]
+6 myDesklet() ["/usr/share/cinnamon/js/misc/fileUtils.js line 211 > Function":272:9]
+7 main() ["/usr/share/cinnamon/js/misc/fileUtils.js line 211 > Function":599:18]
+8 _createDesklets() ["/usr/share/cinnamon/js/ui/deskletManager.js":335:58]
+9 _loadDesklet() ["/usr/share/cinnamon/js/ui/deskletManager.js":303:37]
+10 finishExtensionLoad() ["/usr/share/cinnamon/js/ui/deskletManager.js":179:13]
+11 _init/<() ["/usr/share/cinnamon/js/ui/extension.js":285:31]
+
+Gjs-Message: 22:07:17.699: JS LOG: [LookingGlass/error] Invalid type [object GjsGlobal]
+Gjs-Message: 22:07:17.699: JS LOG: [LookingGlass/trace] 
+<----------------
+_newNodeInfo@resource:///org/gnome/gjs/modules/core/overrides/Gio.js:279:11
+_wrapFunction/klass[method]@resource:///org/gnome/gjs/modules/core/overrides/Gio.js:311:25
+_newInterfaceInfo@resource:///org/gnome/gjs/modules/core/overrides/Gio.js:283:37
+_makeProxyWrapper@resource:///org/gnome/gjs/modules/core/overrides/Gio.js:234:33
+connectToLgDBus@/home/zooleous/.local/share/cinnamon/desklets/devTools@scollins/errorLog.js:203:35
+_init@/home/zooleous/.local/share/cinnamon/desklets/devTools@scollins/errorLog.js:199:14
+CinnamonLogInterface@/home/zooleous/.local/share/cinnamon/desklets/devTools@scollins/errorLog.js:126:10
+addDefaultTabs@/home/zooleous/.local/share/cinnamon/desklets/devTools@scollins/desklet.js:490:20
+buildLayout@/home/zooleous/.local/share/cinnamon/desklets/devTools@scollins/desklet.js:395:18
+_init@/home/zooleous/.local/share/cinnamon/desklets/devTools@scollins/desklet.js:289:18
+myDesklet@/home/zooleous/.local/share/cinnamon/desklets/devTools@scollins/desklet.js:272:10
+main@/home/zooleous/.local/share/cinnamon/desklets/devTools@scollins/desklet.js:599:19
+_createDesklets@/usr/share/cinnamon/js/ui/deskletManager.js:335:59
+_loadDesklet@/usr/share/cinnamon/js/ui/deskletManager.js:303:38
+finishExtensionLoad@/usr/share/cinnamon/js/ui/deskletManager.js:179:14
+_init/<@/usr/share/cinnamon/js/ui/extension.js:285:32
+---------------->
+Gjs-Message: 22:07:17.764: JS LOG: [LookingGlass/info] Loaded desklet devTools@scollins in 115 ms
+Gjs-Message: 22:07:17.768: JS LOG: [LookingGlass/info] DeskletManager started in 2795 ms
+Gtk-Message: 22:07:17.852: Failed to load module "xapp-gtk3-module"
+Gjs-Message: 22:07:18.038: JS LOG: calendar@cinnamon.org: Calendar events supported.
+Gjs-Message: 22:07:18.051: JS LOG: [LookingGlass/info] Loaded extension adjacent-windows@klangman in 287 ms
+Gjs-Message: 22:07:18.062: JS LOG: [LookingGlass/info] Loaded extension smart-panel@mohammad-sn in 10 ms
+Gjs-Message: 22:07:18.104: JS LOG: Installed ShouldAnimateManager handler for CinnamonBurnMyWindows@klangman events 12
+Gjs-Message: 22:07:18.122: JS LOG: [LookingGlass/info] Loaded extension CinnamonBurnMyWindows@klangman in 59 ms
+Gjs-Message: 22:07:18.122: JS LOG: [LookingGlass/info] Loaded applet panel-launchers@cinnamon.org in 0 ms
+Gjs-Message: 22:07:18.314: JS LOG: [LookingGlass/info] Loaded applet power@cinnamon.org in 192 ms
+Gjs-Message: 22:07:18.336: JS LOG: [LookingGlass/info] Role locked: panellauncher
+Gjs-Message: 22:07:18.336: JS LOG: [LookingGlass/info] Role locked: windowattentionhandler
+Gjs-Message: 22:07:18.343: JS LOG: [LookingGlass/info] Monitor Watch List updated: [0]
+Gjs-Message: 22:07:18.344: JS LOG: [LookingGlass/info] Loaded applet grouped-window-list@cinnamon.org in 30 ms
+Gjs-Message: 22:07:18.359: JS LOG: [LookingGlass/info] Loaded applet app-drawer@mostlynick3 in 15 ms
+Gjs-Message: 22:07:18.406: JS LOG: [LookingGlass/info] Loaded applet sticky@scollins in 47 ms
+Gjs-Message: 22:07:18.421: JS LOG: [LookingGlass/info] Adding XAppStatusIcon: blueman (:1.60/org/x/StatusIcon/Icon)
+Gjs-Message: 22:07:18.484: JS LOG: [LookingGlass/info] Loaded applet sound@cinnamon.org in 74 ms
+csd-power-Message: 22:07:18.539: gnome-rr not supported for display backlight, using backlight-helper for future calls
+Gjs-Message: 22:07:18.777: JS LOG: [LookingGlass/info] Loaded applet Cinnamenu@json in 293 ms
+Gjs-Message: 22:07:18.791: JS LOG: [LookingGlass/info] Loaded applet network@cinnamon.org in 14 ms
+Gjs-Message: 22:07:19.289: JS LOG: [LookingGlass/info] Loaded applet menu@cinnamon.org in 498 ms
+Gjs-Message: 22:07:19.293: JS LOG: [LookingGlass/info] Loaded extension centered-cinnamon-dock@mostlynick3 in 4 ms
+Gjs-Message: 22:07:19.294: JS LOG: [LookingGlass/info] ExtensionSystem started in 4325 ms
+Gjs-Message: 22:07:19.294: JS LOG: Enabling WindowAttentionHandler
+Gjs-Message: 22:07:19.308: JS LOG: [LookingGlass/info] Adding XAppStatusIcon:  (:1.60/org/x/StatusIcon/Icon_1)
+Gjs-Message: 22:07:19.351: JS LOG: Unknown network device type, is 32
+Gjs-Message: 22:07:19.357: JS LOG: Unknown network device type, is 30
+Gjs-Message: 22:07:19.357: JS LOG: Unknown network device type, is 13
+Gjs-Message: 22:07:19.694: JS LOG: [LookingGlass/info] Loaded applet CinnVIIStarkMenu@NikoKrause in 401 ms
+Gjs-Message: 22:07:19.694: JS LOG: [LookingGlass/info] AppletManager started in 4738 ms
+Gjs-Message: 22:07:19.701: JS LOG: [LookingGlass/info] Cinnamon took 5386 ms to start
+Gjs-Message: 22:07:20.032: JS LOG: [LookingGlass/info] GPU offload supported: false
+Window manager warning: overlay-key-29 - Overwriting existing binding of keysym ffec with keysym ffec (keycode 86).
+Window manager warning: menu@cinnamon.org::overlay-key::Super_L - Overwriting existing binding of keysym ffeb with keysym ffeb (keycode 85).
+Window manager warning: overlay-key-29 - Overwriting existing binding of keysym ffeb with keysym ffeb (keycode 85).
+Window manager warning: overlay-key-30 - Overwriting existing binding of keysym ffec with keysym ffec (keycode 86).
+
+(nemo-desktop:2139): Nemo-WARNING **: 22:07:21.029: Action 'copy-path-to-clipboard@claudiux.nemo_action' is missing dependency: xclip
+Nemo-Share-Message: 22:07:21.325: Called "net usershare info" but it failed: 'net usershare' returned error 255: info_fn: file /var/lib/samba/usershares/kiro-ide-0.8.206-stable-win32-x64 is not a well formed usershare file.
+info_fn: Error was Path is not a directory.
+
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:07:38.532: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:07:38.532: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:07:38.532: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+Gjs-Message: 22:08:04.092: JS LOG: [LookingGlass/info] Adding XAppStatusIcon: mintUpdate.py (:1.109/org/x/StatusIcon/Icon)
+Gjs-Message: 22:08:04.488: JS LOG: [LookingGlass/info] Adding XAppStatusIcon: mintreport (:1.107/org/x/StatusIcon/Icon)
+Gjs-Message: 22:08:04.496: JS LOG: [LookingGlass/info] Adding XAppStatusIcon: process-monitor (:1.107/org/x/StatusIcon/Icon_1)
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:08:08.550: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:08:08.551: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:08:08.551: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:08:38.581: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:08:38.601: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:08:38.602: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:09:08.629: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:09:08.629: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:09:08.629: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:09:38.643: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:09:38.644: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:10:08.687: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:10:08.687: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:10:38.733: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:10:38.733: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:11:08.779: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:11:08.780: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:11:38.821: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:11:38.821: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:12:08.843: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:12:08.843: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:12:08.843: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:12:38.885: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:12:38.886: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:12:38.886: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:13:08.934: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:13:08.934: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:13:08.934: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:13:38.974: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:13:38.975: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:13:38.975: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:14:09.020: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:14:09.020: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:14:39.055: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:14:39.055: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:15:09.099: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:15:09.100: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:15:39.124: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:15:39.125: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:16:09.171: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:16:09.171: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:16:39.215: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:16:39.216: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:17:09.244: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:17:09.244: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:17:09.244: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:17:39.285: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:17:39.285: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:17:39.285: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:18:09.304: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:18:09.305: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:18:09.305: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+/usr/lib/python3/dist-packages/apt/cache.py:562: Warning: W:An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: https://repository.spotify.com stable InRelease: The following signatures were invalid: EXPKEYSIG C85668DF69375001 Spotify Public Repository Signing Key <tux@spotify.com> The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 5384CE82BA52C83A, W:Failed to fetch https://repository.spotify.com/dists/stable/InRelease  The following signatures were invalid: EXPKEYSIG C85668DF69375001 Spotify Public Repository Signing Key <tux@spotify.com> The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 5384CE82BA52C83A, W:Some index files failed to download. They have been ignored, or old ones used instead.
+  res = self._cache.update(fetch_progress, slist, pulse_interval)
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:18:39.322: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:18:39.322: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:18:39.322: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:19:09.343: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:19:09.344: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+/usr/lib/python3/dist-packages/apt/cache.py:562: Warning: W:An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: https://repository.spotify.com stable InRelease: The following signatures were invalid: EXPKEYSIG C85668DF69375001 Spotify Public Repository Signing Key <tux@spotify.com> The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 5384CE82BA52C83A, W:Failed to fetch https://repository.spotify.com/dists/stable/InRelease  The following signatures were invalid: EXPKEYSIG C85668DF69375001 Spotify Public Repository Signing Key <tux@spotify.com> The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 5384CE82BA52C83A, W:Some index files failed to download. They have been ignored, or old ones used instead.
+  res = self._cache.update(fetch_progress, slist, pulse_interval)
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:19:39.369: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:19:39.369: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:19:39.370: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:20:09.415: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:20:09.415: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:20:39.459: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:20:39.459: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:20:39.459: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:21:09.503: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:21:09.504: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:21:09.504: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:21:39.548: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:21:39.548: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:22:09.593: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:22:09.594: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:22:39.635: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:22:39.635: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:23:09.656: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:23:09.656: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:23:39.693: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:23:39.694: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:24:09.737: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:24:09.738: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:24:39.760: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:24:39.761: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:25:09.793: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:25:09.794: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:25:39.809: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:25:39.809: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:26:09.828: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:26:09.828: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:26:39.874: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:26:39.875: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:26:39.875: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:27:09.918: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:27:09.919: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:27:09.919: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:27:39.939: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:27:39.939: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:28:09.983: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:28:09.983: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:28:40.028: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:28:40.029: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:29:10.069: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:29:10.069: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:29:40.111: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+
+(csd-power:1885): GLib-GIO-CRITICAL **: 22:29:40.112: g_dbus_proxy_get_object_path: assertion 'G_IS_DBUS_PROXY (proxy)' failed
+Window manager warning: overlay-key-29 - Overwriting existing binding of keysym ffec with keysym ffec (keycode 86).
+Window manager warning: menu@cinnamon.org::overlay-key::Super_L - Overwriting existing binding of keysym ffeb with keysym ffeb (keycode 85).
+Window manager warning: overlay-key-29 - Overwriting existing binding of keysym ffeb with keysym ffeb (keycode 85).
+Window manager warning: overlay-key-30 - Overwriting existing binding of keysym ffec with keysym ffec (keycode 86).
+Window manager warning: overlay-key-29 - Overwriting existing binding of keysym ffec with keysym ffec (keycode 86).
+Window manager warning: menu@cinnamon.org::overlay-key::Super_L - Overwriting existing binding of keysym ffeb with keysym ffeb (keycode 85).
