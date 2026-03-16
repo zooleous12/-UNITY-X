@@ -1,0 +1,26 @@
+# Large files - exceed GitHub 100MB limit
+Why Is My App Not Responding_.zip
+python_installer.exe
+Why Is My App Not Responding_/Bigmanus.zip
+*.tar.gz
+
+# Embedded git repos (submodules)
+-UNITY-X/
+REPO/
+
+# Temporary files
+*.tmp
+*.temp
+~$*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Node modules (if any exist)
+node_modules/
+
+# Large videos
+*.mp4
+*.avi
+*.mov
